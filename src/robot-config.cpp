@@ -26,8 +26,6 @@ inertial bob = inertial(PORT15);
 motor inta = motor(PORT16, ratio18_1, 0);
 //intake
 
-motor pner = motor(PORT12, ratio18_1, 0);
-//puncher 
 
 digital_out intawing1 = digital_out(Brain.ThreeWirePort.A);
 digital_out intawing2 = digital_out(Brain.ThreeWirePort.H);

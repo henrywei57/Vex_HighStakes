@@ -7,7 +7,6 @@
 #include "autons/auton_functions.h"
 #include "wing.h"
 #include "utility/buttons.h"
-#include "puncher.h"
 using namespace vex;
 using namespace auton;
 competition Competition;
@@ -41,11 +40,6 @@ void pre_auton(void) {
     wait(10, msec);
   }
 
-    task puncherTask([] () -> int {
-    puncherThread();
-    return 1;
-  });
-  bool alreadyResetCata = false;
 
   // heading_convert(bob.heading());
   while(1){
@@ -115,7 +109,6 @@ void autonomous(void) {
 }
 
 void usercontrol(void) {
-    resetCatapult();
     // hangg.set(1);
     con.ButtonL2.pressed(Front_wings);
     con.ButtonL1.pressed(Back_wings);
