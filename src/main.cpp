@@ -1,3 +1,12 @@
+/*
+Driver control: Joystick 3 controls the vertical acceleration of the chassis
+                Joystick 1 controls the horizontal acceleration of the chassis
+                Button R1 is to intake
+                Button R2 is to outtake
+                
+*/
+
+
 #include "vex.h"
 #include "botcontrol.h"
 #include "basic_control.h"
@@ -15,7 +24,7 @@ int originX = 0;
 int width = 240;
 
 bool intawing = 0;
-      
+
 // int conlef = con.Axis1.position()+con.Axis3.position();
 
 int endX = originX + width;

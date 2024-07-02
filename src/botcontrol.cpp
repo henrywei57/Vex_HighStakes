@@ -20,17 +20,6 @@ bool forwardRed = false;
 bool x;
 bool y;
 
-int curveJoystick(bool red, int input, double t){
-  int val = 0;
-  if(red){
-    val = (std::exp(-t/10)+std::exp((std::abs(input)-100)/10)*(1-std::exp(-t/10))) * input;
-  }else{
-    //blue
-    val = std::exp(((std::abs(input)-100)*t)/1000) * input;
-  }
-  return val;
-}
-
 void driver(){
   //  resetPuncher();
    
