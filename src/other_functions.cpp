@@ -6,9 +6,17 @@
 #include <iostream>
 #include <string>
 #include <cstdio>  // Include for sprintf
-
+#include "botcontrol.h"
+#include "autons/auton.h"
+#include "graphics.h"
 using namespace vex;
 
+void calibob(){
+    bob.startCalibration();
+    while(bob.isCalibrating()){
+    wait(10, msec);
+  }
+}
 
 struct Point {
     double x;
@@ -76,15 +84,17 @@ void qweqweqwe(){
     Brain.Screen.printAt(405, 100, "180");
     Brain.Screen.printAt(362, 63, "270");
 
-    Brain.Screen.drawRectangle(10,10,30,30);
+
 }
 
 void graphic(){
+
+
+
     int x = 200;
     int y = 70;
     int w = 80;
     int h = 100;
-
 
 
     while(1){
@@ -96,7 +106,7 @@ void graphic(){
 
         // Clear previous drawing (if necessary) and draw rotated rectangle
         Brain.Screen.clearScreen();  // Clear previous content (adjust as needed)
-
+        qweqweqwe();
 
         drawRotatedRectangle(240, 120, w, h, angle_mod);
 
@@ -109,9 +119,3 @@ void graphic(){
 
 
 
-void calibob(){
-    bob.startCalibration();
-    while(bob.isCalibrating()){
-    wait(10, msec);
-  }
-}

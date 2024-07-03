@@ -83,10 +83,10 @@ void driver(){
 
 
 ////////////////////////////////////////////////////////////////////////////////
-    double xxxx = (leftmo.temperature(celsius)+rightmo.temperature(celsius))/2;
-    Brain.Screen.print(xxxx);
+    // double xxxx = (leftmo.temperature(celsius)+rightmo.temperature(celsius))/2;
+    // Brain.Screen.print(xxxx);
     wait(10, msec);
-    Brain.Screen.clearLine();
+    // Brain.Screen.clearLine();
   }
 
 
