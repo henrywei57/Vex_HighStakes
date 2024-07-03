@@ -81,7 +81,7 @@ void usercontrol(void) {
 
 }
 int main() {
-  calibob();
+  // calibob();
   graphic();
   // Competition.autonomous(autonomous);
   // Competition.drivercontrol(usercontrol);

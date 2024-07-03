@@ -87,19 +87,13 @@ void qweqweqwe(){
 
 }
 
-void graphic(){
-
-
-
+void angle(){
+    
     int x = 200;
     int y = 70;
     int w = 80;
     int h = 100;
-
-
-    while(1){
-
-        int angle = bob.angle();  // Assuming bob.angle() gives the angle
+            int angle = bob.angle();  // Assuming bob.angle() gives the angle
         int angle_mod = angle % 360;  // Ensure angle is within 0-359 range
 
         std::string angle_str = intToString(angle_mod);
@@ -115,6 +109,79 @@ void graphic(){
         // Print angle_str at a specific position on the screen
         Brain.Screen.printAt(225, 125, angle_str.c_str());
         Brain.Screen.render();
+}
+
+void qpwoei(){
+    Brain.Screen.drawLine(100,100,100,200);
+      Brain.Screen.drawLine(150,100,150,200);
+      for (int angle = 0; angle <= 180; angle++) {
+        int x = 125 + 25 * cos(angle * M_PI / 180);
+        int y = 100 - 25 * sin(angle * M_PI / 180);
+        Brain.Screen.drawPixel(x, y);
+      }
+      for (int angle = 0; angle <= 180; angle++) {
+        int x = 175 + 25 * cos(angle * M_PI / 180);
+        int y = 200 - 25 * sin(angle * M_PI / 180);
+        Brain.Screen.drawPixel(x, y);
+      }
+      double angle_rad = -80 * M_PI / 180; // Convert the rotation angle to radians
+
+      for (int angle = 0; angle <= 180; angle++) {
+        double x = 25 * cos(angle* M_PI / 180);
+        double y = 25 * sin(angle* M_PI / 180);
+
+        // Rotate the point by the rotation angle
+        int x_rotated = 175 + x * cos(angle_rad) - y * sin(angle_rad);
+        int y_rotated = 200 + x * sin(angle_rad) + y * cos(angle_rad);
+
+        Brain.Screen.drawPixel(x_rotated, y_rotated);
+
+
+      for (int angle = 0; angle <= 180; angle++) {
+        int x = 75 + 25 * cos(angle * M_PI / 180);
+        int y = 200 - 25 * sin(angle * M_PI / 180);
+        Brain.Screen.drawPixel(x, y);
+      }
+      double angle_rad = 80 * M_PI / 180; // Convert the rotation angle to radians
+
+      for (int angle = 0; angle <= 180; angle++) {
+        double x = 25 * cos(angle* M_PI / 180);
+        double y = 25 * sin(angle* M_PI / 180);
+
+        // Rotate the point by the rotation angle
+        int x_rotated = 75 + x * cos(angle_rad) - y * sin(angle_rad);
+        int y_rotated = 200 + x * sin(angle_rad) + y * cos(angle_rad);
+
+        Brain.Screen.drawPixel(x_rotated, y_rotated);
+}
+}
+}
+
+void otherweirdstuff(){
+            int xpos = Brain.Screen.xPosition();
+        int ypos = Brain.Screen.yPosition();
+        if((xpos>=100&&xpos<=150)&&(ypos>=100&&ypos<=225)){
+            wait(4.7,sec);
+            Brain.Screen.drawLine(125,70,125,70);
+            wait(300,msec);
+            Brain.Screen.drawLine(125,70,125,60);
+            wait(300,msec);
+            Brain.Screen.drawLine(125,70,125,50);
+            wait(300,msec);
+            Brain.Screen.drawLine(125,70,125,10);
+            wait(300,msec);
+        }
+}
+
+void graphic(){
+
+
+qpwoei();
+
+    while(1){
+        angle();
+        // Brain.Screen.drawCircle(xpos,ypos,50);
+        
         wait(20, msec);
     }
 }
