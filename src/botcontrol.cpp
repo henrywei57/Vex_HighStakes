@@ -3,6 +3,7 @@
 #include "main.h"
 #include "robot-config.h"
 #include "wing.h"
+#include "other_function.h"
 using namespace vex;
 
   // if (fabs(input)<width){
@@ -25,7 +26,7 @@ void driver(){
    
 
   while(1){
-   
+
     // double turnVal = curveJoystick(false, con.Axis1.position(percent), turningCurve); //Get curvature according to settings [-100,100]
     // double forwardVal = curveJoystick(false, con.Axis3.position(percent), forwardCurve); //Get curvature according to settings [-100,100]
 

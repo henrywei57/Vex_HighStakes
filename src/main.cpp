@@ -3,7 +3,7 @@ Driver control: Joystick 3 controls the vertical acceleration of the chassis
                 Joystick 1 controls the horizontal acceleration of the chassis
                 Button R1 is to intake
                 Button R2 is to outtake
-                
+
 */
 
 
@@ -16,9 +16,13 @@ Driver control: Joystick 3 controls the vertical acceleration of the chassis
 #include "autons/auton_functions.h"
 #include "wing.h"
 #include "utility/buttons.h"
+#include "other_function.h"
 using namespace vex;
 using namespace auton;
 competition Competition;
+
+
+
 
 int originX = 0;
 int width = 240;
@@ -40,58 +44,14 @@ bool taboption = 1;
 
 void pre_auton(void) {
   vexcodeInit();
-  board();
+  // board();
 
 
   
-  bob.startCalibration();
-  while(bob.isCalibrating()){
-    wait(10, msec);
-  }
+calibob();
 
 
   // heading_convert(bob.heading());
-  while(1){
-  if (Brain.Screen.pressing()){
-    int X = Brain.Screen.xPosition();
-    int Y = Brain.Screen.yPosition();
-    if ((Y <= 120) && (X >= 240)){
-    Brain.Screen.drawRectangle(240, 30, 240, 105);
-    Brain.Screen.setFillColor(green);
-    Brain.Screen.setPenColor(black);
-    Brain.Screen.printAt(315, 95, "Close Elim");
-      autonoption = 1;
-
-    } else if((Y <= 120) && (X <= 240)){
-    Brain.Screen.drawRectangle(0, 30, 240, 105);
-    Brain.Screen.setFillColor(green);
-    Brain.Screen.setPenColor(black);
-    Brain.Screen.printAt(85, 95, "Far Elim");  
-      autonoption = 2;
-
-    } else if((Y >= 120) && (X <= 240)){
-    Brain.Screen.drawRectangle(0, 135, 240, 105);
-    Brain.Screen.setFillColor(green);
-    Brain.Screen.setPenColor(black);
-    Brain.Screen.printAt(80, 195, "Far Qua");  
-      autonoption = 3;
-
-    } else if((Y >= 120) && (X >= 240)){
-    Brain.Screen.drawRectangle(240, 135, 240, 105);
-        Brain.Screen.setFillColor(green);
-    Brain.Screen.setPenColor(black);
-    Brain.Screen.printAt(310, 195, "Close Qua");  
-      autonoption = 4;
-
-    } else if(Y <= 30){
-      Brain.Screen.clearScreen();
-
-    
-
-    }
-  }
-  wait(20, msec);
-}
 
 
 }
@@ -104,20 +64,11 @@ void autonomous(void) {
   Brain.Screen.clearScreen();
   Brain.Screen.setFillColor(red);
   Brain.Screen.printAt(((480/2)-36), (240/2), "Auton Start!");
-  if(autonoption == 1){
-    close_elim();
-  } else if(autonoption == 2){
-    far_elim();
-  } else if(autonoption == 3){
-    far_qua();
-  } else if(autonoption == 4){
-    close_qua();
-  }
-    close_elim();
-
+  test();
 }
 
 void usercontrol(void) {
+
     // hangg.set(1);
     con.ButtonL2.pressed(Front_wings);
     con.ButtonL1.pressed(Back_wings);
@@ -130,11 +81,12 @@ void usercontrol(void) {
 
 }
 int main() {
- 
-  Competition.autonomous(autonomous);
-  Competition.drivercontrol(usercontrol);
-  pre_auton();
-  while (true) {
-    wait(100, msec);
-  }
+  calibob();
+  graphic();
+  // Competition.autonomous(autonomous);
+  // Competition.drivercontrol(usercontrol);
+  // pre_auton();
+  // while (true) {
+  //   wait(100, msec);
+  // }
 }
