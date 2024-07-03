@@ -8,7 +8,7 @@
 #include <cstdio>  // Include for sprintf
 #include "botcontrol.h"
 #include "autons/auton.h"
-#include "graphics.h"
+
 using namespace vex;
 
 void calibob(){
@@ -83,7 +83,7 @@ void qweqweqwe(){
     Brain.Screen.printAt(450, 63, "90");
     Brain.Screen.printAt(405, 100, "180");
     Brain.Screen.printAt(362, 63, "270");
-
+    
 
 }
 
@@ -106,8 +106,10 @@ void graphic(){
 
         // Clear previous drawing (if necessary) and draw rotated rectangle
         Brain.Screen.clearScreen();  // Clear previous content (adjust as needed)
+        con.Screen.clearScreen();
+        con.Screen.setCursor(1,1);
         qweqweqwe();
-
+        con.Screen.print(angle_str.c_str());
         drawRotatedRectangle(240, 120, w, h, angle_mod);
 
         // Print angle_str at a specific position on the screen
