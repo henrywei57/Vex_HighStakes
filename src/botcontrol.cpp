@@ -26,7 +26,7 @@ void driver(){
    
 
   while(1){
-    qpwoei();
+    otherweirdstuff();
     // double turnVal = curveJoystick(false, con.Axis1.position(percent), turningCurve); //Get curvature according to settings [-100,100]
     // double forwardVal = curveJoystick(false, con.Axis3.position(percent), forwardCurve); //Get curvature according to settings [-100,100]
 
@@ -57,8 +57,8 @@ void driver(){
 /////////////////////////////////////////////////////////////////
 
     double axis3 = con.Axis3.position(pct);
-    double axis1 = -(con.Axis1.position(pct))*0.1;
-    double leftVolt = axis3 - axis1;
+    double axis1 = -(con.Axis1.position(pct))*0.7;    
+     double leftVolt = axis3 - axis1;
     double rightVolt = axis3 + axis1;
     double scale = 12.0 / fmax(12.0, fmax(fabs(leftVolt), fabs(rightVolt)));
     leftVolt *= scale;
@@ -85,6 +85,7 @@ void driver(){
 ////////////////////////////////////////////////////////////////////////////////
     // double xxxx = (leftmo.temperature(celsius)+rightmo.temperature(celsius))/2;
     // Brain.Screen.print(xxxx);
+    angle();
     wait(10, msec);
     // Brain.Screen.clearLine();
   }
