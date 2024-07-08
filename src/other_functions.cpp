@@ -87,31 +87,8 @@ void qweqweqwe(){
 
 }
 
-void angle(){
-    
-    int x = 200;
-    int y = 70;
-    int w = 80;
-    int h = 100;
-            int angle = bob.angle();  // Assuming bob.angle() gives the angle
-        int angle_mod = angle % 360;  // Ensure angle is within 0-359 range
 
-        std::string angle_str = intToString(angle_mod);
-
-        // Clear previous drawing (if necessary) and draw rotated rectangle
-        Brain.Screen.clearScreen();  // Clear previous content (adjust as needed)
-        con.Screen.clearScreen();
-        con.Screen.setCursor(1,1);
-        qweqweqwe();
-        con.Screen.print(angle_str.c_str());
-        drawRotatedRectangle(240, 120, w, h, angle_mod);
-
-        // Print angle_str at a specific position on the screen
-        Brain.Screen.printAt(225, 125, angle_str.c_str());
-        Brain.Screen.render();
-}
-
-void qpwoei(){
+    void qpwoei(){
     Brain.Screen.drawLine(100,100,100,200);
       Brain.Screen.drawLine(150,100,150,200);
       for (int angle = 0; angle <= 180; angle++) {
@@ -158,6 +135,7 @@ void qpwoei(){
 }
 
 void otherweirdstuff(){
+    qpwoei();
             int xpos = Brain.Screen.xPosition();
         int ypos = Brain.Screen.yPosition();
         if((xpos>=100&&xpos<=150)&&(ypos>=100&&ypos<=225)){
@@ -167,21 +145,73 @@ void otherweirdstuff(){
             Brain.Screen.drawLine(125,70,125,60);
             wait(300,msec);
             Brain.Screen.drawLine(125,70,125,50);
-            wait(300,msec);
+           wait(300,msec);
             Brain.Screen.drawLine(125,70,125,10);
             wait(300,msec);
         }
 }
 
+void angle(){
+    
+    int x = 200;
+    int y = 70;
+    int w = 80;
+    int h = 100;
+            int angle = bob.angle();  // Assuming bob.angle() gives the angle
+        int angle_mod = angle % 360;  // Ensure angle is within 0-359 range
+
+        std::string angle_str = intToString(angle_mod);
+
+        // Clear previous drawing (if necessary) and draw rotated rectangle
+ // Clear previous content (adjust as needed)
+        Brain.Screen.clearScreen();
+        con.Screen.clearScreen();
+        con.Screen.setCursor(1,1);
+        qweqweqwe();
+        con.Screen.print(angle_str.c_str());
+        drawRotatedRectangle(240, 120, w, h, angle_mod);
+
+        // Print angle_str at a specific position on the screen
+        Brain.Screen.printAt(225, 125, angle_str.c_str());
+        Brain.Screen.render();
+}
+
+void arrow(){
+    // int xpos = Brain.Screen.xPosition();
+    // int ypos = Brain.Screen.yPosition();
+    // Brain.Screen.drawLine(20,200,40,200);
+    // Brain.Screen.drawLine(20,200,30,210);
+    // Brain.Screen.drawLine(20,200,30,190);
+
+    // Brain.Screen.drawLine(450,200,470,200);
+    // Brain.Screen.drawLine(460,210,470,200);
+    // Brain.Screen.drawLine(460,190,470,200);
+    // if(xpos>20&&xpos<40&&ypos<210&&ypos>200){
+
+    // }
+
+}
+
+void temp(){
+    Brain.Screen.drawCircle(240,120,l3.temperature(celsius)*2);
+            int angle = l3.temperature(celsius);  // Assuming bob.angle() gives the angle
+        std::string angle_str = intToString(angle);
+    Brain.Screen.printAt(240,120,angle_str.c_str());
+}
+
 void graphic(){
 
-
-qpwoei();
+    
 
     while(1){
-        angle();
+
+
+        otherweirdstuff();
+        // Brain.Screen.clearScreen(); 
+        // angle();
         // Brain.Screen.drawCircle(xpos,ypos,50);
-        
+        // arrow();
+
         wait(20, msec);
     }
 }

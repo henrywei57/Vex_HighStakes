@@ -13,13 +13,13 @@ brain  Brain;
 controller con;
 //controller 
 
-motor l1 = motor(PORT19, ratio6_1, 1);
-motor l2 = motor(PORT18, ratio6_1, 2);
-motor l3 = motor(PORT20, ratio6_1, 3);
+motor l1 = motor(PORT1, ratio6_1, 1);
+motor l2 = motor(PORT2, ratio6_1, 0);
+motor l3 = motor(PORT3, ratio6_1, 1);
 motor_group leftmo = motor_group(l1, l2, l3);
-motor r1 = motor(PORT11, ratio6_1, 11);
-motor r2 = motor(PORT12, ratio6_1, 12);
-motor r3 = motor(PORT13, ratio6_1, 13);
+motor r1 = motor(PORT11, ratio6_1, 0);
+motor r2 = motor(PORT12, ratio6_1, 1);
+motor r3 = motor(PORT13, ratio6_1, 0);
 motor_group rightmo = motor_group(r1, r2, r3);
 inertial bob = inertial(PORT15);
 //chassis 
