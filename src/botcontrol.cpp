@@ -26,7 +26,7 @@ void driver(){
    
 
   while(1){
-    otherweirdstuff();
+    // otherweirdstuff();
     // double turnVal = curveJoystick(false, con.Axis1.position(percent), turningCurve); //Get curvature according to settings [-100,100]
     // double forwardVal = curveJoystick(false, con.Axis3.position(percent), forwardCurve); //Get curvature according to settings [-100,100]
 
@@ -38,9 +38,9 @@ void driver(){
 
     // vex::task::sleep(20);
     if(con.ButtonR1.pressing()){
-      inta.spin(reverse, 100, pct);
+      intas.spin(reverse, 100, pct);
     } else if(con.ButtonR2.pressing()){
-      inta.spin(fwd, 100, pct);
+      intas.spin(fwd, 100, pct);
     } else{
       inta.stop(hold);
     }
@@ -56,8 +56,8 @@ void driver(){
     // }
 /////////////////////////////////////////////////////////////////
 
-    double axis3 = con.Axis3.position(pct);
-    double axis1 = -(con.Axis1.position(pct))*0.7;    
+    double axis3 = -con.Axis3.position(pct)*0.5;
+    double axis1 = -con.Axis1.position(pct)*0.7;    
      double leftVolt = axis3 - axis1;
     double rightVolt = axis3 + axis1;
     double scale = 12.0 / fmax(12.0, fmax(fabs(leftVolt), fabs(rightVolt)));

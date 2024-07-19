@@ -16,12 +16,12 @@ extern motor r1;
 extern motor r2;
 extern motor r3;
 extern motor_group rightmo;
-extern motor inta;
-extern motor smlboi;
-extern motor ptoboi;
-extern digital_out intawing1;
-extern digital_out intawing2;
-extern digital_out dropdown;
+extern motor inta1;
+extern motor inta2;
+extern motor inta3;
+extern motor_group intas;
+extern digital_out mogoclp;
+extern digital_out intakee;
 extern digital_out hangg;
 extern distance dst;
 /**

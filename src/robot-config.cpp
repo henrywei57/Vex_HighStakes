@@ -25,18 +25,19 @@ inertial bob = inertial(PORT15);
 //chassis 
 
 
-motor inta = motor(PORT16, ratio18_1, 0);
+motor inta1 = motor(PORT16, ratio6_1, 1);
+motor inta2 = motor(PORT17, ratio18_1, 0);
+motor inta3 = motor(PORT18, ratio18_1, 0);
+motor_group intas = motor_group(inta1,inta2,inta3);
 //intake
 
 
-digital_out intawing1 = digital_out(Brain.ThreeWirePort.A);
-digital_out intawing2 = digital_out(Brain.ThreeWirePort.H);
-digital_out dropdown = digital_out(Brain.ThreeWirePort.D);
+digital_out intakee = digital_out(Brain.ThreeWirePort.H);
+digital_out mogoclp = digital_out(Brain.ThreeWirePort.D);
 digital_out hangg = digital_out(Brain.ThreeWirePort.F);
 //pneumatics
 
-motor smlboi = motor(PORT10, ratio18_1, 0);
-motor ptoboi = motor(PORT1, ratio36_1, 1);
+
 //other motors
 
 distance dst = distance(PORT2);

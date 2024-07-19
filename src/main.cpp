@@ -70,8 +70,8 @@ void autonomous(void) {
 void usercontrol(void) {
 
     // hangg.set(1);
-    con.ButtonL2.pressed(Front_wings);
-    con.ButtonL1.pressed(Back_wings);
+    con.ButtonL2.pressed(mogo_clamp);
+    con.ButtonL1.pressed(intake);
     con.ButtonDown.pressed(hang);
 
 
