@@ -11,10 +11,10 @@ void keybind(){
 }
 
 void intaout(){
-    inta.spin(fwd, 100, pct);
+    intas.spin(fwd, 100, pct);
 }
 void intain(){
-    inta.spin(reverse, 100, pct);
+    intas.spin(reverse, 100, pct);
 }
 
 void calibrate(){

@@ -8,6 +8,7 @@
 #include <cstdio>  // Include for sprintf
 #include "botcontrol.h"
 #include "autons/auton.h"
+#include <string.h>
 
 using namespace vex;
 
@@ -213,6 +214,14 @@ void graphic(){
         // arrow();
 
         wait(20, msec);
+    }
+}
+void loading(int time,vex::color clr){
+    int x = (120/time);
+    for(int i = 0;i<time;i++){
+        Brain.Screen.drawCircle(240,120,x,clr);
+        x+=8;
+        wait(1,sec);
     }
 }
 

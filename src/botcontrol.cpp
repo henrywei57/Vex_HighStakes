@@ -42,7 +42,7 @@ void driver(){
     } else if(con.ButtonR2.pressing()){
       intas.spin(fwd, 100, pct);
     } else{
-      inta.stop(hold);
+      intas.stop(hold);
     }
     // if(con.ButtonRight.pressing()){
     //   smlboi.spin(reverse, 100, pct);
@@ -85,6 +85,16 @@ void driver(){
 ////////////////////////////////////////////////////////////////////////////////
     // double xxxx = (leftmo.temperature(celsius)+rightmo.temperature(celsius))/2;
     // Brain.Screen.print(xxxx);
+
+  if(clrsr.color()==blue){
+      wrgclr.set(1);
+      wait(100,msec);
+      wrgclr.set(0);
+  }
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
     angle();
     wait(10, msec);
     // Brain.Screen.clearLine();

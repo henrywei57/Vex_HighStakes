@@ -61,14 +61,13 @@ void autonomous(void) {
 // close_qua();
 // far_qua();
 // close_elim();
-  Brain.Screen.clearScreen();
-  Brain.Screen.setFillColor(red);
-  Brain.Screen.printAt(((480/2)-36), (240/2), "Auton Start!");
+  loading(15,green);
   test();
 }
 
 void usercontrol(void) {
-
+    loading(65,green);
+    loading(30,red);
     // hangg.set(1);
     con.ButtonL2.pressed(mogo_clamp);
     con.ButtonL1.pressed(intake);

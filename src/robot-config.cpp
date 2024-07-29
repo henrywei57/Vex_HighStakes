@@ -35,6 +35,7 @@ motor_group intas = motor_group(inta1,inta2,inta3);
 digital_out intakee = digital_out(Brain.ThreeWirePort.H);
 digital_out mogoclp = digital_out(Brain.ThreeWirePort.D);
 digital_out hangg = digital_out(Brain.ThreeWirePort.F);
+digital_out wrgclr = digital_out(Brain.ThreeWirePort.A);
 //pneumatics
 
 
@@ -42,6 +43,8 @@ digital_out hangg = digital_out(Brain.ThreeWirePort.F);
 
 distance dst = distance(PORT2);
 //distance sensor
+
+optical clrsr = optical(PORT19);
 
 // VEXcode generated  
 

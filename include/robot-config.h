@@ -23,7 +23,9 @@ extern motor_group intas;
 extern digital_out mogoclp;
 extern digital_out intakee;
 extern digital_out hangg;
+extern digital_out wrgclr;
 extern distance dst;
+extern optical clrsr;
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 

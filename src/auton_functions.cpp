@@ -76,9 +76,9 @@ double heading_convert(double heading){
         bob.setHeading(degree, degrees);
     }
     void suk(int speed){
-        inta.spin(reverse, speed, pct);
+        intas.spin(reverse, speed, pct);
     }
     void unsuk(int speed){
-        inta.spin(fwd, speed, pct);
+        intas.spin(fwd, speed, pct);
     }
 }
