@@ -33,10 +33,10 @@ void driver(){
 
 /////////////////////////////////////////////////////////////////
 
-    double axis3 = con.Axis3.position(pct);
-    double axis1 = con.Axis1.position(pct);    
-    double leftVolt = axis3 - axis1;
-    double rightVolt = axis3 + axis1;
+    double axis1 = -con.Axis3.position(pct);
+    double axis3 = -con.Axis1.position(pct);    
+    double leftVolt = axis1 - axis3;
+    double rightVolt = axis1 + axis3;
     double scale = 12.0 / fmax(12.0, fmax(fabs(leftVolt), fabs(rightVolt)));
     leftVolt *= scale;
     rightVolt *= scale;
@@ -61,11 +61,11 @@ void driver(){
 
 ////////////////////////////////////////////////////////////////////////////////
 
-  if(clrsr.color()==blue){
-      wrgclr.set(1);
-      wait(100,msec);
-      wrgclr.set(0);
-  }
+  // if(clrsr.color()==blue){
+  //     wrgclr.set(1);
+  //     wait(100,msec);
+  //     wrgclr.set(0);
+  // }
 
 
 /////////////////////////////////////////////////////////////////////////////////////

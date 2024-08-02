@@ -29,35 +29,36 @@ double heading_convert(double heading){
             double averageTraveledDegree = (leftTraveledDegree+rightTraveledDegree)/2;
             double error = distanceDegree - averageTraveledDegree;
             drivePID.computeFromError(error);
-            double newLinearVelocity = drivePID.getValue();
+            double newLinearVelocity = -drivePID.getValue();
             newLinearVelocity = fmax(-linearMaxVelocity, fmin(linearMaxVelocity, newLinearVelocity));
 
             // Get turning velocity
                 double rotateError = angle - bob.rotation(deg);
                 rotateToPID.computeFromError(rotateError);
-                newTurnVelocity = rotateToPID.getValue();
+                newTurnVelocity = -rotateToPID.getValue();
                 newTurnVelocity = -(fmax(-turnMaxVelocity, fmin(turnMaxVelocity, newTurnVelocity)));
             // Get final velocity
+            // double finalLeftVelocity = newLinearVelocity - newTurnVelocity;
+            // double finalRightVelocity = newLinearVelocity + newTurnVelocity;
             double finalLeftVelocity = newLinearVelocity + newTurnVelocity;
             double finalRightVelocity = newLinearVelocity - newTurnVelocity;
-            // double finalLeftVelocity = newTurnVelocity - newLinearVelocity;
-            // double finalRightVelocity = newLinearVelocity + newTurnVelocity;
-            driveVelocity(finalLeftVelocity, finalRightVelocity);
-
+            driveVelocity(finalLeftVelocity,finalRightVelocity);
+            con.Screen.print(error);
             task::sleep(20);
+            con.Screen.clearScreen();
         }
         leftmo.stop();
         rightmo.stop();
     }
     void turnToAngle(double angle, double MaxVelocity, double timeoutMs){
-        PIDControl rotateToPID(0.5, 0, 0, 2);
+        PIDControl rotateToPID(0.435, 0, 0, 2);
         // PIDControl rotateToPID();
         timer timeout;
         while(timeout.time(msec) <= timeoutMs && !rotateToPID.reachedGoal()){
             double error = angle - bob.rotation(degrees);
             rotateToPID.computeFromError(error);
             double newTurnVelocity = rotateToPID.getValue(); 
-            driveVelocity(-newTurnVelocity, newTurnVelocity); 
+            driveVelocity(newTurnVelocity, -newTurnVelocity); 
             printf("error%3f\n",error); 
             task::sleep(20); 
 
@@ -76,9 +77,9 @@ double heading_convert(double heading){
         bob.setHeading(degree, degrees);
     }
     void suk(int speed){
-        intas.spin(reverse, speed, pct);
+        intas.spin(fwd, speed, pct);
     }
     void unsuk(int speed){
-        intas.spin(fwd, speed, pct);
+        intas.spin(reverse, speed, pct);
     }
 }

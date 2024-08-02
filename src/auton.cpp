@@ -13,5 +13,9 @@ suk(speed): Use the intake
 unsuk(speed): Use the outtake
 */
 void test(){
-
+    setHeading(0);
+    sped = 0.048;
+    driveAndTurn(1.2,0,100,100);
+    mogoclp.set(0);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+    // driveAndTurn(1,0);
 }

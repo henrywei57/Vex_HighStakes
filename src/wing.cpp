@@ -6,7 +6,6 @@ using namespace vex;
 
 bool Inta = 1;
 bool Clamp = 1;
-bool hanggg = 1;
 
 
 void intake(){
@@ -28,16 +27,6 @@ void mogo_clamp(){
     else if(!Clamp){
         mogoclp.set(false);
         Clamp = 1;
-    }
-}
-void hang(){
-    if(hanggg){
-        hangg.set(1);
-        hanggg = 0;
-    }
-    else if(!hanggg){
-        hangg.set(0);
-        hanggg = 1;
     }
 }
 

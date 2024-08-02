@@ -61,17 +61,17 @@ void autonomous(void) {
 // close_qua();
 // far_qua();
 // close_elim();
-  loading(15,green);
+  // loading(15,green);
   test();
 }
 
 void usercontrol(void) {
-    loading(65,green);
-    loading(30,red);
+    // loading(65,green);
+    // loading(30,red);
     // hangg.set(1);
     con.ButtonL2.pressed(mogo_clamp);
     con.ButtonL1.pressed(intake);
-    con.ButtonDown.pressed(hang);
+
 
 
     // resetPuncher();
@@ -89,4 +89,4 @@ int main() {
     wait(100, msec);
   }
 
-}
+} 
