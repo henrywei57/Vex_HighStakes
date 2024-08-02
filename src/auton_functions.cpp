@@ -29,13 +29,13 @@ double heading_convert(double heading){
             double averageTraveledDegree = (leftTraveledDegree+rightTraveledDegree)/2;
             double error = distanceDegree - averageTraveledDegree;
             drivePID.computeFromError(error);
-            double newLinearVelocity = -drivePID.getValue();
+            double newLinearVelocity = drivePID.getValue();
             newLinearVelocity = fmax(-linearMaxVelocity, fmin(linearMaxVelocity, newLinearVelocity));
 
             // Get turning velocity
                 double rotateError = angle - bob.rotation(deg);
                 rotateToPID.computeFromError(rotateError);
-                newTurnVelocity = -rotateToPID.getValue();
+                newTurnVelocity = rotateToPID.getValue();
                 newTurnVelocity = -(fmax(-turnMaxVelocity, fmin(turnMaxVelocity, newTurnVelocity)));
             // Get final velocity
             // double finalLeftVelocity = newLinearVelocity - newTurnVelocity;
