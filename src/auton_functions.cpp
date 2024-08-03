@@ -30,6 +30,7 @@ double heading_convert(double heading){
             double error = distanceDegree - averageTraveledDegree;
             drivePID.computeFromError(error);
             double newLinearVelocity = drivePID.getValue();
+            double newLinearVelocity = drivePID.getValue();
             newLinearVelocity = fmax(-linearMaxVelocity, fmin(linearMaxVelocity, newLinearVelocity));
 
             // Get turning velocity
