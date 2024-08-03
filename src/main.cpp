@@ -80,6 +80,7 @@ void usercontrol(void) {
 
 }
 int main() {
+  mogoclp.set(1);
   // calibob();
   // graphic();
   Competition.autonomous(autonomous);

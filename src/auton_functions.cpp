@@ -13,7 +13,7 @@ double heading_convert(double heading){
 
     double sped = 0.05;
     void driveAndTurn(double tiles, double angle, double linearMaxVelocity, double turnMaxVelocity, double timeoutMs){
-        double distanceDegree = tiles * (24.0 / 1.0) * (1.0 / (M_PI * 3.5 )) * (84.0 / 1.0) * (1.0 / 48.0) * (360.0 / 1.0);
+        double distanceDegree = tiles * (24.0 / 1.0) * (1.0 / (M_PI * 3.5 )) * (60.0 / 1.0) * (1.0 / 48.0) * (360.0 / 1.0);
         double initLeftMoterDegree = leftmo.position(degrees);
         double initRightMoterDegree = rightmo.position(degrees);
         // PIDControl drivePID(sped, 0, 0, 2);
@@ -29,14 +29,14 @@ double heading_convert(double heading){
             double averageTraveledDegree = (leftTraveledDegree+rightTraveledDegree)/2;
             double error = distanceDegree - averageTraveledDegree;
             drivePID.computeFromError(error);
-            double newLinearVelocity = -drivePID.getValue();
+            double newLinearVelocity = drivePID.getValue();
             newLinearVelocity = fmax(-linearMaxVelocity, fmin(linearMaxVelocity, newLinearVelocity));
 
             // Get turning velocity
                 double rotateError = angle - bob.rotation(deg);
                 rotateToPID.computeFromError(rotateError);
-                newTurnVelocity = -rotateToPID.getValue();
-                newTurnVelocity = -(fmax(-turnMaxVelocity, fmin(turnMaxVelocity, newTurnVelocity)));
+                newTurnVelocity = rotateToPID.getValue();
+                newTurnVelocity = (fmax(-turnMaxVelocity, fmin(turnMaxVelocity, newTurnVelocity)));
             // Get final velocity
             // double finalLeftVelocity = newLinearVelocity - newTurnVelocity;
             // double finalRightVelocity = newLinearVelocity + newTurnVelocity;
