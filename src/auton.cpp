@@ -15,14 +15,21 @@ unsuk(speed): Use the outtake
 void test(){
     mogoclp.set(1);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
     setHeading(0);
-    sped = 0.08;
-    driveAndTurn(1.25,30,30,100);
+    sped = 0.05;
+    driveAndTurn(1.42,33,40,100);
     mogoclp.set(0);
     wait(300,msec);
-    intas.spin(fwd,100,pct);
-    driveAndTurn(-0.9,115,25,100);
-    driveAndTurn(-0.9,180,25,100);
-    turnToAngle(270);
-    // wait(300,msec);
-    // driveAndTurn(1,0);
+    suk(100);
+    driveAndTurn(-0.62,112,25,100);
+    // intas.stop();
+    turnToAngle(170);
+    driveAndTurn(-0.6,170,100,100);
+    driveAndTurn(-1,90,40,100);
+    wait(500,msec);
+    turnToAngle(315);
+    driveAndTurn(-2.3,230,80,100);
+    
+
+
+    // driveAndTurn(-0.9,270,100,50);
 }

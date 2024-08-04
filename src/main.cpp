@@ -81,6 +81,7 @@ void usercontrol(void) {
 }
 int main() {
   mogoclp.set(1);
+  intakee.set(0);
   // calibob();
   // graphic();
   Competition.autonomous(autonomous);
