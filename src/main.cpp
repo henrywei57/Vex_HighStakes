@@ -3,6 +3,8 @@ Driver control: Joystick 3 controls the vertical acceleration of the chassis
                 Joystick 1 controls the horizontal acceleration of the chassis
                 Button R1 is to intake
                 Button R2 is to outtake
+                Button L1 is for the drop down arm
+                Button L2 is for the mobile goal clamp
 
 */
 
@@ -17,6 +19,7 @@ Driver control: Joystick 3 controls the vertical acceleration of the chassis
 #include "wing.h"
 #include "utility/buttons.h"
 #include "other_function.h"
+
 using namespace vex;
 using namespace auton;
 competition Competition;
@@ -61,7 +64,8 @@ void autonomous(void) {
 // close_qua();
 // far_qua();
 // close_elim();
-  // loading(15,green);
+    vex::thread t([] { loading(15, vex::color::green); });
+    t.detach();
   test();
 }
 
