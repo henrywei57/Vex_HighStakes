@@ -15,7 +15,7 @@ void intaout(){
 }
 void intain(){
     intas.spin(reverse, 100, pct);
-}
+}              
 
 void calibrate(){
     calibob();

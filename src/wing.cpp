@@ -10,22 +10,22 @@ bool Clamp = 1;
 
 void intake(){
     if(Inta){
-        intakee.set(true);
+        mogoclp.set(true);
         Inta = 0;
     }
     else if(!Inta){
-        intakee.set(false);
+        mogoclp.set(false);
         Inta = 1;
     }
 }
 
 void mogo_clamp(){
     if(Clamp){
-        mogoclp.set(1);
+        intakee.set(1);
         Clamp = 0;
     }
     else if(!Clamp){
-        mogoclp.set(false);
+        intakee.set(false);
         Clamp = 1;
     }
 }
