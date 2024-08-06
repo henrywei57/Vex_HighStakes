@@ -28,6 +28,12 @@
 		"sstream": "cpp",
 		"streambuf": "cpp",
 		"type_traits": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"array": "cpp",
+		"functional": "cpp",
+		"stdexcept": "cpp",
+		"thread": "cpp",
+		"tuple": "cpp",
+		"utility": "cpp"
 	}
 }

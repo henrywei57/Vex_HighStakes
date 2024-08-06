@@ -64,13 +64,14 @@ void autonomous(void) {
 // close_qua();
 // far_qua();
 // close_elim();
-    // vex::thread t([] { loading(15, vex::color::green); });
-    // t.detach();
+    vex::thread t([] { loading(15, vex::color::green); });
+    t.detach();
   test();
   // test1();
 }
 
 void usercontrol(void) {
+  // draw();
     // loading(65,green);
     // loading(30,red);
     // hangg.set(1);
@@ -122,7 +123,10 @@ void usercontrol(void) {
 int main() {
   mogoclp.set(1);
   intakee.set(0);
-  drawing();
+  // vex::thread a([] { drawing(); });
+  // a.detach();
+    displayScrollingArt();
+
   // calibob();
   // graphic();
   Competition.autonomous(autonomous);
