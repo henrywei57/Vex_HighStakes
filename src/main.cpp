@@ -64,9 +64,9 @@ void autonomous(void) {
 // close_qua();
 // far_qua();
 // close_elim();
-    vex::thread t([] { loading(15, vex::color::green); });
-    t.detach();
-  test();
+    // vex::thread t([] { loading(15, vex::color::green); });
+  // t.detach();
+  redr();
   // test1();
 }
 
@@ -77,6 +77,7 @@ void usercontrol(void) {
     // hangg.set(1);
     con.ButtonL2.pressed(mogo_clamp);
     con.ButtonL1.pressed(intake);
+    // con.ButtonUp.pressed(hangg);
 
   // Brain.Screen.setCursor(1,0);
   // Brain.Screen.print("                          _ooOoo");
@@ -123,10 +124,9 @@ void usercontrol(void) {
 int main() {
   mogoclp.set(1);
   intakee.set(0);
-  // vex::thread a([] { drawing(); });
-  // a.detach();
-    displayScrollingArt();
-
+  vex::thread a([] { racistmech(vex::color::blue); });
+  a.detach();
+    drawing();
   // calibob();
   // graphic();
   Competition.autonomous(autonomous);

@@ -27,13 +27,14 @@ void driver(){
       intas.spin(fwd, 100, pct);
     } else if(con.ButtonR2.pressing()){
       intas.spin(reverse, 100, pct);
-    } else{
+    }else{
       intas.stop(hold);
     }
 
 /////////////////////////////////////////////////////////////////
 
     double Axis3 = con.Axis3.position(pct);
+    // double Axis3 = 0;
     double Axis1 = con.Axis1.position(pct);
     
     // Calculate left and right voltages based on joystick inputs

@@ -1,4 +1,6 @@
 #pragma once
 
-void test();
-void test1();
+void redl();
+void bluer();
+void redr();
+void bluel();

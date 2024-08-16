@@ -1,5 +1,5 @@
 void intake();
 void mogo_clamp();
-void hang();
+void hangg();
 void distemp();
 void dispboard();

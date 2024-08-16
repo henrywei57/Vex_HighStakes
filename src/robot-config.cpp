@@ -33,15 +33,16 @@ motor_group intas = motor_group(inta1,inta2);
 
 digital_out intakee = digital_out(Brain.ThreeWirePort.B);
 digital_out mogoclp = digital_out(Brain.ThreeWirePort.A);
+digital_out racistpiston = digital_out(Brain.ThreeWirePort.C);
 //pneumatics
 
 
 //other motors
 
-distance dst = distance(PORT2);
+// distance dst = distance(PORT2);
 //distance sensor
 
-optical clrsr = optical(PORT19);
+optical racistsensor = optical(PORT21);
 
 // VEXcode generated  
 

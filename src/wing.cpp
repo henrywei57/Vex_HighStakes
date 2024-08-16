@@ -8,6 +8,8 @@ bool Inta = 1;
 bool Clamp = 1;
 
 
+
+
 void intake(){
     if(Inta){
         mogoclp.set(true);
@@ -29,4 +31,5 @@ void mogo_clamp(){
         Clamp = 1;
     }
 }
+
 
