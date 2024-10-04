@@ -1,8 +1,6 @@
 #pragma once
 
-void board();
-int Decide_side();
-void field();
+int board();
 
 // void resetPuncher();
 // void puncherThread();

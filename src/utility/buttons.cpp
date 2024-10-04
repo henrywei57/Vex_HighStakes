@@ -2,7 +2,7 @@
 #include "robot-config.h"
 using namespace vex;
 
-void board(){
+int board(){
 //       Brain.Screen.drawLine(100,100,100,200);
 //       Brain.Screen.drawLine(150,100,150,200);
 //       for (int angle = 0; angle <= 180; angle++) {
@@ -46,6 +46,18 @@ void board(){
 //         Brain.Screen.drawPixel(x_rotated, y_rotated);
 // }
 // }
-
+    Brain.Screen.drawLine(240,0,240,240);
+    Brain.Screen.drawLine(0,120,480,120);
+    while(true){
+        if(Brain.Screen.xPosition()<=240&&Brain.Screen.yPosition()<=120){
+            return 1;
+        }else if(Brain.Screen.xPosition()>=240&&Brain.Screen.yPosition()<=120){
+            return 2;
+        }else if(Brain.Screen.xPosition()<=240&&Brain.Screen.yPosition()>=120){
+            return 3;
+        }else if(Brain.Screen.xPosition()>=240&&Brain.Screen.yPosition()>=120){
+            return 4;
+        }
+    }
 }
 

@@ -52,7 +52,7 @@ void pre_auton(void) {
 
   
 calibob();
-
+int autoselect = board();
 
   // heading_convert(bob.heading());
 
@@ -61,13 +61,7 @@ calibob();
 
 void autonomous(void) {
   con.rumble("- .-. ..--...-. .");
-// close_qua();
-// far_qua();
-// close_elim();
-    // vex::thread t([] { loading(15, vex::color::green); });
-  // t.detach();
-  redr();
-  // test1();
+  
 }
 
 void usercontrol(void) {
