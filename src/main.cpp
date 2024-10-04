@@ -79,44 +79,7 @@ void usercontrol(void) {
     con.ButtonL1.pressed(intake);
     // con.ButtonUp.pressed(hangg);
 
-  // Brain.Screen.setCursor(1,0);
-  // Brain.Screen.print("                          _ooOoo");
-  // Brain.Screen.setCursor(2,0);
-  // Brain.Screen.print("                         o8888888o");
-  // Brain.Screen.setCursor(3,0);
-  // Brain.Screen.print("                         88\" . \"88");
-  // Brain.Screen.setCursor(4,0);
-  // Brain.Screen.print("                         (| -_- |)");
-  // Brain.Screen.setCursor(5,0);
-  // Brain.Screen.print("                         O\\  =  /O");
-  // Brain.Screen.setCursor(6,0);
-  // Brain.Screen.print("                       ___/`---'\\____");
-  // Brain.Screen.setCursor(7,0);
-  // Brain.Screen.print("                    .'  \\\\|     |//  `.");
-  // Brain.Screen.setCursor(8,0);
-  // Brain.Screen.print("                   /  \\\\|||  :  |||//  \\");
-  // Brain.Screen.setCursor(9,0);
-  // Brain.Screen.print("                  /  _||||| -:- |||||_  \\");
-  // Brain.Screen.setCursor(10,0);
-  // Brain.Screen.print("                  |   | \\\\\\  -  /// |   |");
-  // Brain.Screen.setCursor(11,0);
-  // Brain.Screen.print("                  | \\_|  ''\\---/''  |   |");
-  // Brain.Screen.setCursor(12,0);
-  // Brain.Screen.print("                  \\  .-\\__       __/-.  /");
-  // Brain.Screen.setCursor(13,0);
-  // Brain.Screen.print("                ___`. .'  /--.--\\ `. . __");
-  // Brain.Screen.setCursor(14,0);
-  // Brain.Screen.print("             ."" '<  `.___\\_<|>_/__.'  >'"".");
-  // Brain.Screen.setCursor(15,0);
-  // Brain.Screen.print("           | | :  `- \\`.;`\\ _ /`;.`/ - ` : | |");
-  // Brain.Screen.setCursor(16,0);
-  // Brain.Screen.print("            \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /");
-  // Brain.Screen.setCursor(17,0);
-  // Brain.Screen.print("       ======`-.____`-.___\\_____/___.-`____.-'======");
-  // Brain.Screen.setCursor(18,0);
-  // Brain.Screen.print("                          `=---='");
 
-    // resetPuncher();
   driver();
 
 
@@ -124,9 +87,7 @@ void usercontrol(void) {
 int main() {
   mogoclp.set(1);
   intakee.set(0);
-  vex::thread a([] { racistmech(vex::color::blue); });
-  a.detach();
-    drawing();
+
   // calibob();
   // graphic();
   Competition.autonomous(autonomous);

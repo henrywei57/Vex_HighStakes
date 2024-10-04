@@ -82,4 +82,18 @@ double heading_convert(double heading){
     void unsuk(int speed){
         intas.spin(reverse, speed, pct);
     }
+    void arm(double angle, double MaxVelocity, double timeoutMs){
+        PIDControl rotateToPID(0.5, 0, 0, 2);
+        // PIDControl rotateToPID();
+        timer timeout;
+        while(timeout.time(msec) <= timeoutMs && !rotateToPID.reachedGoal()){
+            double error = angle - bob.rotation(degrees);
+            rotateToPID.computeFromError(error);
+            double newTurnVelocity = rotateToPID.getValue(); 
+            driveVelocity(newTurnVelocity, -newTurnVelocity); 
+            task::sleep(20); 
+
+        }
+        inta1.stop();
+    }
 }

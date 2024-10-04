@@ -230,14 +230,7 @@ void loading(int time,vex::color clr){
     }
 }
 
-void racistmech(vex::color x){
-    if((racistsensor.color())){
-        racistpiston.set(1);
-        wait(300,msec);
-        racistpiston.set(0);
-    }
-    
-}
+
 
 
 
