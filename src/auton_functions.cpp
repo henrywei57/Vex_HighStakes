@@ -83,7 +83,7 @@ double heading_convert(double heading){
         intas.spin(reverse, speed, pct);
     }
         void armmovement(double angle, double MaxVelocity, double timeoutMs){
-        PIDControl rotateToPID(0.435, 0, 0, 2);
+        PIDControl rotateToPID(1, 0, 0, 2);
         double initArmMoterDegree = arm.position(degrees);
         // PIDControl rotateToPID();
         timer timeout;

@@ -34,17 +34,19 @@ void mogo_clamp(){
 }
 
 void armup(){
-    // arm.spin(fwd,35,pct);
-    // wait(100,msec);
+    arm.spin(fwd,35,pct);
+    // wait(1,msec);
     // arm.stop(hold);
-    auton::armmovement(35);
 }
 
 void armdown(){
-    // arm.spin(reverse,35,pct);
-    // wait(100,msec);
+    arm.spin(reverse,35,pct);
+    // wait(1,msec);
     // arm.stop(hold);
-    auton::armmovement(-35,100,1000);
+    // auton::armmovement(5,100,1000);
+}
+void armupup(){
+    auton::armmovement(35);
 }
 
 

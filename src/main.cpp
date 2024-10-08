@@ -67,13 +67,14 @@ void usercontrol(void) {
     con.ButtonL2.pressed(mogo_clamp);
     con.ButtonRight.pressed(armup);
     con.ButtonY.pressed(armdown);
+    con.ButtonDown.pressed(armupup);
     driver();
 
 
 }
 int main() {
-  mogoclp.set(1);
-  intakee.set(0);
+  // mogoclp.set(1);
+  // intakee.set(0);
 
 
   Competition.autonomous(autonomous);

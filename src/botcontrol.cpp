@@ -21,8 +21,12 @@ bool forwardRed = false;
 bool x;
 bool y;
 
+
+
+
 void driver(){
   while(1){
+    double x = arm.position(degrees);
     if(con.ButtonR1.pressing()){
       intas.spin(fwd, 100, pct);
     } else if(con.ButtonR2.pressing()){
@@ -31,6 +35,15 @@ void driver(){
       intas.stop(hold);
     }
 
+
+    if(con.ButtonRight.pressing()){
+
+      arm.spin(fwd, 35*pow(1.01,x), pct);
+    } else if(con.ButtonY.pressing()){
+      arm.spin(reverse, 35*pow(1.01,x), pct);
+    }else{
+      arm.stop(hold);
+    }
 /////////////////////////////////////////////////////////////////
 
     double Axis3 = -con.Axis3.position(pct);
@@ -76,6 +89,8 @@ void driver(){
 
 
 /////////////////////////////////////////////////////////////////////////////////////
+
+    // arm.stop(hold);
 
     // angle();
     wait(10, msec);

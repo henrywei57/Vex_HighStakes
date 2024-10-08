@@ -30,7 +30,7 @@ motor inta2 = motor(PORT21, ratio18_1, 0);
 motor_group intas = motor_group(inta1,inta2);
 //intake
 
-motor arm = motor(PORT10, ratio36_1, 0);
+motor arm = motor(PORT10, ratio36_1, 0);  
 
 digital_out intakee = digital_out(Brain.ThreeWirePort.B);
 digital_out mogoclp = digital_out(Brain.ThreeWirePort.A);
