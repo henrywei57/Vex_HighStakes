@@ -10,4 +10,5 @@ namespace auton {
     void suk(int speed);
     void unsuk(int speed);
     extern double fwdspd;
+    void armmovement(double angle, double MaxVelocity = 100, double timeoutMs = 1500);
 }

@@ -33,7 +33,7 @@ void driver(){
 
 /////////////////////////////////////////////////////////////////
 
-    double Axis3 = con.Axis3.position(pct);
+    double Axis3 = -con.Axis3.position(pct);
     // double Axis3 = 0;
     double Axis1 = con.Axis1.position(pct);
     

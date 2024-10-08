@@ -1,6 +1,7 @@
 #include "vex.h"
 #include "robot-config.h"
 #include "utility/buttons.h"
+#include "autons/auton_functions.h"
 
 using namespace vex;
 
@@ -31,5 +32,21 @@ void mogo_clamp(){
         Clamp = 1;
     }
 }
+
+void armup(){
+    // arm.spin(fwd,35,pct);
+    // wait(100,msec);
+    // arm.stop(hold);
+    auton::armmovement(35);
+}
+
+void armdown(){
+    // arm.spin(reverse,35,pct);
+    // wait(100,msec);
+    // arm.stop(hold);
+    auton::armmovement(-35,100,1000);
+}
+
+
 
 

@@ -54,7 +54,6 @@ void pre_auton(void) {
 calibob();
 int autoselect = board();
 
-  // heading_convert(bob.heading());
 
 
 }
@@ -65,16 +64,10 @@ void autonomous(void) {
 }
 
 void usercontrol(void) {
-  // draw();
-    // loading(65,green);
-    // loading(30,red);
-    // hangg.set(1);
     con.ButtonL2.pressed(mogo_clamp);
-    con.ButtonL1.pressed(intake);
-    // con.ButtonUp.pressed(hangg);
-
-
-  driver();
+    con.ButtonRight.pressed(armup);
+    con.ButtonY.pressed(armdown);
+    driver();
 
 
 }
@@ -82,13 +75,14 @@ int main() {
   mogoclp.set(1);
   intakee.set(0);
 
-  // calibob();
-  // graphic();
+
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
   pre_auton();
   while (true) {
     wait(100, msec);
   }
+  
+
 
 } 

@@ -82,18 +82,21 @@ double heading_convert(double heading){
     void unsuk(int speed){
         intas.spin(reverse, speed, pct);
     }
-    void arm(double angle, double MaxVelocity, double timeoutMs){
-        PIDControl rotateToPID(0.5, 0, 0, 2);
+        void armmovement(double angle, double MaxVelocity, double timeoutMs){
+        PIDControl rotateToPID(0.435, 0, 0, 2);
+        double initArmMoterDegree = arm.position(degrees);
         // PIDControl rotateToPID();
         timer timeout;
         while(timeout.time(msec) <= timeoutMs && !rotateToPID.reachedGoal()){
-            double error = angle - bob.rotation(degrees);
+            double currentArmMotorDegree = arm.position(degrees);
+            double armTraveledDegree = currentArmMotorDegree - initArmMoterDegree;
+            double error = angle - armTraveledDegree;
             rotateToPID.computeFromError(error);
             double newTurnVelocity = rotateToPID.getValue(); 
-            driveVelocity(newTurnVelocity, -newTurnVelocity); 
+            arm.spin(fwd,newTurnVelocity,pct); 
             task::sleep(20); 
 
         }
-        inta1.stop();
+        arm.stop(hold);
     }
 }

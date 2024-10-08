@@ -26,6 +26,7 @@ extern digital_out racistpiston;
 extern digital_out wrgclr;
 extern distance dst;
 extern optical racistsensor;
+extern motor arm;
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 
