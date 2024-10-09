@@ -36,7 +36,6 @@ bool intawing = 0;
 
 int endX = originX + width;
 
-int autonoption = 0;
 bool taboption = 1;
     float deadband(float input, float width){
   if (fabs(input)<width){
@@ -44,15 +43,13 @@ bool taboption = 1;
   }
   return(input);
 }
-
 void pre_auton(void) {
   vexcodeInit();
-  // board();
+  board();
 
 
   
 calibob();
-int autoselect = board();
 
 
 
@@ -60,13 +57,21 @@ int autoselect = board();
 
 void autonomous(void) {
   con.rumble("- .-. ..--...-. .");
-  
+
+}
+
+void handleButtonPresses() {
+  while(true) {
+    con.ButtonDown.pressed(armupup);
+    vex::task::sleep(20);  // Short delay to prevent unnecessary CPU usage
+  }
 }
 
 void usercontrol(void) {
     con.ButtonL2.pressed(mogo_clamp);
-    con.ButtonRight.pressed(armup);
-    con.ButtonY.pressed(armdown);
+    // con.ButtonRight.pressed(armup);
+    // con.ButtonY.pressed(armdown);
+    // vex::thread buttonThread(handleButtonPresses);
     con.ButtonDown.pressed(armupup);
     driver();
 
@@ -76,7 +81,7 @@ int main() {
   // mogoclp.set(1);
   // intakee.set(0);
 
-
+    // auton::armmovement(-35,100);
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
   pre_auton();

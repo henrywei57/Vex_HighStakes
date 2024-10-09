@@ -1,7 +1,7 @@
 #pragma once
 
-int board();
-
+void board();
+extern int autonoption;
 // void resetPuncher();
 // void puncherThread();
 // int getPunchedCount();

@@ -4,6 +4,7 @@
 #include "robot-config.h"
 #include "wing.h"
 #include "other_function.h"
+#include "autons/auton_functions.h"
 using namespace vex;
 
   // if (fabs(input)<width){
@@ -21,12 +22,13 @@ bool forwardRed = false;
 bool x;
 bool y;
 
-
+double swfp9iug = arm.position(degrees);
 
 
 void driver(){
+  bool ddd = armmermer;
   while(1){
-    double x = arm.position(degrees);
+    // double x = arm.position(degrees);
     if(con.ButtonR1.pressing()){
       intas.spin(fwd, 100, pct);
     } else if(con.ButtonR2.pressing()){
@@ -34,16 +36,31 @@ void driver(){
     }else{
       intas.stop(hold);
     }
-
+    
+    
+    // con.ButtonDown.pressed(armupup);
 
     if(con.ButtonRight.pressing()){
-
-      arm.spin(fwd, 35*pow(1.01,x), pct);
+      if(arm.position(degrees)<=40){
+        arm.spin(fwd, 10, pct);
+      }else{
+      arm.spin(fwd, 100, pct);
+      }
     } else if(con.ButtonY.pressing()){
-      arm.spin(reverse, 35*pow(1.01,x), pct);
+      if(arm.position(degrees)>=40){
+        arm.spin(reverse, 10, pct);
+      }else{
+      arm.spin(reverse, 100, pct);
+      }
     }else{
       arm.stop(hold);
     }
+    // this is trash
+    //i dont want to code anymore
+    //nothing works
+    //it works when its not suppose to
+    //im so done
+
 /////////////////////////////////////////////////////////////////
 
     double Axis3 = -con.Axis3.position(pct);
@@ -58,7 +75,7 @@ void driver(){
     double Scale = 12.0 / fmax(12.0, fmax(fabs(LeftVolt), fabs(RightVolt)));
     LeftVolt *= Scale;
     RightVolt *= Scale;
-    
+    if(con.ButtonUp.pressing()){
     // Stop left motor if voltage is below a threshold, otherwise spin it forward
     if (fabs(LeftVolt) < 0.1) {
         leftmo.stop(brake);
@@ -72,12 +89,16 @@ void driver(){
     } else {
         rightmo.spin(forward, RightVolt, volt);
     }
+    }
 
 
 
 //////////////////////////////////////////////////////////////////////////////
-
-
+if(armmermer!=ddd){
+  int currentArmPosition = arm.position(degrees);
+  auton::armmovement((swfp9iug+35)-currentArmPosition);
+  ddd = armmermer;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -93,8 +114,9 @@ void driver(){
     // arm.stop(hold);
 
     // angle();
+    Brain.Screen.print(arm.torque());
     wait(10, msec);
-    // Brain.Screen.clearLine();
+    Brain.Screen.clearLine();
   }
 
 
