@@ -47,10 +47,10 @@ void driver(){
       arm.spin(fwd, 100, pct);
       }
     } else if(con.ButtonY.pressing()){
-      if(arm.position(degrees)>=40){
-        arm.spin(reverse, 10, pct);
+      if(arm.position(degrees)>=180){
+        arm.spin(reverse, 100, pct);
       }else{
-      arm.spin(reverse, 100, pct);
+      arm.spin(reverse, 10, pct);
       }
     }else{
       arm.stop(hold);
