@@ -23,10 +23,16 @@ bool x;
 bool y;
 
 double swfp9iug = arm.position(degrees);
+    bool ddd = armmermer;
 
-
+void wrrfliuu3(){
+  if(armmermer!=ddd){
+  int currentArmPosition = arm.position(degrees);
+  auton::armmovement((swfp9iug+31)-currentArmPosition, 100, 300);
+  ddd = armmermer;
+}
+}
 void driver(){
-  bool ddd = armmermer;
   while(1){
     // double x = arm.position(degrees);
     if(con.ButtonR1.pressing()){
@@ -41,17 +47,9 @@ void driver(){
     // con.ButtonDown.pressed(armupup);
 
     if(con.ButtonRight.pressing()){
-      if(arm.position(degrees)<=40){
-        arm.spin(fwd, 10, pct);
-      }else{
-      arm.spin(fwd, 100, pct);
-      }
+        arm.spin(fwd, 40, pct);
     } else if(con.ButtonY.pressing()){
-      if(arm.position(degrees)>=180){
-        arm.spin(reverse, 100, pct);
-      }else{
-      arm.spin(reverse, 10, pct);
-      }
+        arm.spin(reverse, 40, pct);
     }else{
       arm.stop(hold);
     }
@@ -94,11 +92,7 @@ void driver(){
 
 
 //////////////////////////////////////////////////////////////////////////////
-if(armmermer!=ddd){
-  int currentArmPosition = arm.position(degrees);
-  auton::armmovement((swfp9iug+35)-currentArmPosition);
-  ddd = armmermer;
-}
+thread asd(wrrfliuu3);
 
 ////////////////////////////////////////////////////////////////////////////////
 

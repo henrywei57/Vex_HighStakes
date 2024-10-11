@@ -8,3 +8,4 @@ void angle();
 void loading(int time,vex::color clr);
 void racistmech(vex::color x);
 void drawing();
+void calibrateArm();

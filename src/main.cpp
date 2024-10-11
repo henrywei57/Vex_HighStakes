@@ -63,17 +63,17 @@ void autonomous(void) {
 void handleButtonPresses() {
   while(true) {
     con.ButtonDown.pressed(armupup);
-    vex::task::sleep(20);  // Short delay to prevent unnecessary CPU usage
+    vex::task::sleep(20);  
   }
 }
 
 void usercontrol(void) {
     con.ButtonL2.pressed(mogo_clamp);
     // con.ButtonRight.pressed(armup);
-    // con.ButtonY.pressed(armdown);
+    // con.ButtonUp.pressed();
     // vex::thread buttonThread(handleButtonPresses);
     con.ButtonDown.pressed(armupup);
-    driver();
+    driver(); 
 
 
 }

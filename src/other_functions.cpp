@@ -155,6 +155,18 @@ void otherweirdstuff(){
         }
 }
 
+
+void calibrateArm(){
+    arm.spin(reverse, 2, volt);
+    if(arm.torque()<=0.5){
+        arm.stop(coast);
+    }
+    arm.setPosition(0, degrees);
+    arm.stop(brake);
+    wait(10,msec);
+    arm.stop(hold);
+}
+
 void angle(){
     
     int x = 200;
