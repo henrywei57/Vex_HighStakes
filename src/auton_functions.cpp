@@ -94,8 +94,9 @@ double heading_convert(double heading){
             rotateToPID.computeFromError(error);
             double newTurnVelocity = rotateToPID.getValue(); 
             arm.spin(fwd,newTurnVelocity,pct); 
+            Brain.Screen.print(timeout.value());
             task::sleep(20); 
-
+            Brain.Screen.clearLine();
         }
         arm.stop(hold);
     }

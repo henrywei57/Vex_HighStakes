@@ -6,11 +6,13 @@
 #include "other_function.h"
 #include "autons/auton_functions.h"
 using namespace vex;
+using namespace auton;
 
   // if (fabs(input)<width){
   //   return(0);
   // }
   // return(input);
+
 int pxpos = 480/2;
 int pypos = 240/2;
 int turningCurve = 5;
@@ -24,11 +26,14 @@ bool y;
 
 double swfp9iug = arm.position(degrees);
     bool ddd = armmermer;
-
+void sdasd(){
+    int currentArmPosition = arm.position(degrees);
+  auton::armmovement((swfp9iug+31)-currentArmPosition, 100, (29.0 / 405.0) * currentArmPosition * currentArmPosition - (32.0 / 3.0) * currentArmPosition + 1000);
+}
 void wrrfliuu3(){
   if(armmermer!=ddd){
-  int currentArmPosition = arm.position(degrees);
-  auton::armmovement((swfp9iug+31)-currentArmPosition, 100, 300);
+  thread asd(sdasd);
+  // auton::armmovement((swfp9iug+31)-currentArmPosition, 100,1.1*currentArmPosition+1100);
   ddd = armmermer;
 }
 }
@@ -92,7 +97,7 @@ void driver(){
 
 
 //////////////////////////////////////////////////////////////////////////////
-thread asd(wrrfliuu3);
+wrrfliuu3();
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -108,9 +113,7 @@ thread asd(wrrfliuu3);
     // arm.stop(hold);
 
     // angle();
-    Brain.Screen.print(arm.torque());
     wait(10, msec);
-    Brain.Screen.clearLine();
   }
 
 

@@ -68,6 +68,7 @@ void handleButtonPresses() {
 }
 
 void usercontrol(void) {
+  // auton::armmovement(180);
     con.ButtonL2.pressed(mogo_clamp);
     // con.ButtonRight.pressed(armup);
     // con.ButtonUp.pressed();
