@@ -5,6 +5,7 @@
 #include "wing.h"
 #include "other_function.h"
 #include "autons/auton_functions.h"
+#include <iostream>
 using namespace vex;
 using namespace auton;
 
@@ -28,11 +29,12 @@ double swfp9iug = arm.position(degrees);
     bool ddd = armmermer;
 void sdasd(){
     int currentArmPosition = arm.position(degrees);
-  auton::armmovement((swfp9iug+31)-currentArmPosition, 100, (29.0 / 405.0) * currentArmPosition * currentArmPosition - (32.0 / 3.0) * currentArmPosition + 1000);
+  auton::armmovement((swfp9iug+33)-currentArmPosition, 100, (0.0654 * currentArmPosition * currentArmPosition) - (9.00 * currentArmPosition) + 1000);
 }
 void wrrfliuu3(){
   if(armmermer!=ddd){
-  thread asd(sdasd);
+  sdasd();
+
   // auton::armmovement((swfp9iug+31)-currentArmPosition, 100,1.1*currentArmPosition+1100);
   ddd = armmermer;
 }
@@ -52,10 +54,10 @@ void driver(){
     // con.ButtonDown.pressed(armupup);
 
     if(con.ButtonRight.pressing()){
-        arm.spin(fwd, 40, pct);
+      arm.spin(fwd, 35, pct);
     } else if(con.ButtonY.pressing()){
-        arm.spin(reverse, 40, pct);
-    }else{
+      arm.spin(reverse, 35, pct);
+    } else {
       arm.stop(hold);
     }
     // this is trash
@@ -78,7 +80,7 @@ void driver(){
     double Scale = 12.0 / fmax(12.0, fmax(fabs(LeftVolt), fabs(RightVolt)));
     LeftVolt *= Scale;
     RightVolt *= Scale;
-    if(con.ButtonUp.pressing()){
+    // if(con.ButtonUp.pressing()){
     // Stop left motor if voltage is below a threshold, otherwise spin it forward
     if (fabs(LeftVolt) < 0.1) {
         leftmo.stop(brake);
@@ -92,12 +94,12 @@ void driver(){
     } else {
         rightmo.spin(forward, RightVolt, volt);
     }
-    }
+    // }
 
 
 
 //////////////////////////////////////////////////////////////////////////////
-wrrfliuu3();
+thread asd(wrrfliuu3);
 
 ////////////////////////////////////////////////////////////////////////////////
 

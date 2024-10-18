@@ -101,3 +101,7 @@ void bluel(){
     driveAndTurn(-2.8,90,40,100);
     intakee.set(0);
 }
+
+void test(){
+    
+}

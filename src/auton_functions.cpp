@@ -87,7 +87,7 @@ double heading_convert(double heading){
         double initArmMoterDegree = arm.position(degrees);
         // PIDControl rotateToPID();
         timer timeout;
-        while(timeout.time(msec) <= timeoutMs && !rotateToPID.reachedGoal()){
+        while(timeout.time(msec) <= timeoutMs && !rotateToPID.reachedGoal() && !(con.ButtonRight.pressing()||con.ButtonY.pressing())){
             double currentArmMotorDegree = arm.position(degrees);
             double armTraveledDegree = currentArmMotorDegree - initArmMoterDegree;
             double error = angle - armTraveledDegree;
@@ -98,6 +98,5 @@ double heading_convert(double heading){
             task::sleep(20); 
             Brain.Screen.clearLine();
         }
-        arm.stop(hold);
     }
 }

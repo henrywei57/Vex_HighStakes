@@ -57,23 +57,17 @@ calibob();
 
 void autonomous(void) {
   con.rumble("- .-. ..--...-. .");
-
-}
-
-void handleButtonPresses() {
-  while(true) {
-    con.ButtonDown.pressed(armupup);
-    vex::task::sleep(20);  
-  }
+  test();
 }
 
 void usercontrol(void) {
   // auton::armmovement(180);
-    con.ButtonL2.pressed(mogo_clamp);
+    con.ButtonL1.pressed(mogo_clamp);
+    
     // con.ButtonRight.pressed(armup);
     // con.ButtonUp.pressed();
     // vex::thread buttonThread(handleButtonPresses);
-    con.ButtonDown.pressed(armupup);
+    // con.ButtonDown.pressed(armupup);
     driver(); 
 
 
