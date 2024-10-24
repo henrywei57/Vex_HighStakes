@@ -13,11 +13,11 @@ double heading_convert(double heading){
 
     double sped = 0.05;
     void driveAndTurn(double tiles, double angle, double linearMaxVelocity, double turnMaxVelocity, double timeoutMs){
-        double distanceDegree = tiles * (24.0 / 1.0) * (1.0 / (M_PI * 3.5 )) * (60.0 / 1.0) * (1.0 / 48.0) * (360.0 / 1.0);
+        double distanceDegree = tiles * (24.0 / 1.0) * (1.0 / (M_PI * 3.25 )) * (60.0 / 1.0) * (1.0 / 48.0) * (360.0 / 1.0);
         double initLeftMoterDegree = leftmo.position(degrees);
         double initRightMoterDegree = rightmo.position(degrees);
         // PIDControl drivePID(sped, 0, 0, 2);
-        PIDControl drivePID(sped, 0, 0, 2);
+        PIDControl drivePID(sped, 0, 0.0005, 2);
         PIDControl rotateToPID(0.46, 0, 0, 2);
         timer timeout;
         while(timeout.time(msec) <= timeoutMs && (!drivePID.reachedGoal() || !rotateToPID.reachedGoal())) {

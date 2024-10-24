@@ -14,6 +14,10 @@ using namespace auton;
   // }
   // return(input);
 
+
+//jar wannabe
+
+
 int pxpos = 480/2;
 int pypos = 240/2;
 int turningCurve = 5;
@@ -43,9 +47,12 @@ void driver(){
   while(1){
     // double x = arm.position(degrees);
     if(con.ButtonR1.pressing()){
-      intas.spin(fwd, 100, pct);
+      // intas.spin(fwd, 100, pct);
+      inta1.spin(fwd,100,pct);
+      inta2.spin(fwd,100,pct);
     } else if(con.ButtonR2.pressing()){
-      intas.spin(reverse, 100, pct);
+      inta1.spin(reverse,100,pct);
+      inta2.spin(reverse,100,pct);
     }else{
       intas.stop(hold);
     }
@@ -96,10 +103,10 @@ void driver(){
     }
     // }
 
-
+ 
 
 //////////////////////////////////////////////////////////////////////////////
-thread asd(wrrfliuu3);
+//thread asd(wrrfliuu3); useless thread, fucking dog shit
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -115,7 +122,7 @@ thread asd(wrrfliuu3);
     // arm.stop(hold);
 
     // angle();
-    wait(10, msec);
+    wait((1000 * (-(std::cos((std::sqrt((1000 % 2) + 16) * (std::pow(4, 0.5)) / 8) + 9)))/100)+(std::sqrt(1)*(std::sqrt(4))), msec);
   }
 
 

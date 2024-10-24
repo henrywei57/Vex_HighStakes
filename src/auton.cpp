@@ -60,25 +60,7 @@ void bluer(){
 }
 
 void redr(){
-    mogoclp.set(1);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-    setHeading(0);
-    sped = 0.05;
-    driveAndTurn(1.37,29,45,100);
-    mogoclp.set(0);
-    wait(300,msec);
-    inta1.spin(fwd,100,pct);
-    inta2.spin(fwd,100,pct);
-    driveAndTurn(-0.73,110,30,100);
-    turnToAngle(25);
-    driveAndTurn(-1,20,30,100);
-    turnToAngle(45);
-    driveAndTurn(-1,20,80,100);
-    intakee.set(1);
-    driveAndTurn(1,20,100,100);
-    turnToAngle(-200);
-    mogoclp.set(1);
-    driveAndTurn(-2.8,90,40,100);
-    intakee.set(0);
+
 }
 void bluel(){
     mogoclp.set(1);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
@@ -103,5 +85,12 @@ void bluel(){
 }
 
 void test(){
-    
+    intakee.set(1);
+    sped = 0.05;
+    driveAndTurn(-1.5,0);
+    intakee.set(0);
+    suk(100);
+    driveAndTurn(2,-90,50,100);
+    wait(10,vex::timeUnits::sec);
+    intakee.set(1);
 }
