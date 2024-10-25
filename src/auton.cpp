@@ -37,51 +37,33 @@ void redl(){
 
 
 void bluer(){
-    mogoclp.set(1);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+    intakee.set(1);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
     setHeading(0);
     sped = 0.05;
-    driveAndTurn(1.42,40,40,100);
-    mogoclp.set(0);
-    wait(300,msec);
-    inta1.spin(fwd,100,pct);
-    inta2.spin(fwd,100,pct);
-    driveAndTurn(-0.62,-110,30,100);
-    // driveAndTurn(-0.5,90,10,100);
-    // intas.stop();
-    turnToAngle(-170);
-    driveAndTurn(-0.6,-170,100,100);
-    driveAndTurn(-0.5,-90,36,100);
-
-    wait(300,msec);
-    driveAndTurn(-0.5,0,10,100);
-    turnToAngle(-270);
-    driveAndTurn(-3,-250,80,100);
-    mogoclp.set(1);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+    driveAndTurn(-1.1,-20,100,100);  
+    intakee.set(0);       
+    wait(300,msec);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    suk(100);
+    turnToAngle(-90);
+    driveAndTurn(1.25,-167,100,50);
+    turnToAngle(-150);
+    driveAndTurn(0.5,-270,100,27.5);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+    driveAndTurn(1.3,-250,100,100);
 }
 
 void redr(){
 
 }
 void bluel(){
-    mogoclp.set(1);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+    intakee.set(1);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
     setHeading(0);
     sped = 0.05;
-    driveAndTurn(1.37,29,45,100);
-    mogoclp.set(0);
-    wait(300,msec);
-    inta1.spin(fwd,100,pct);
-    inta2.spin(fwd,100,pct);
-    driveAndTurn(-0.73,110,30,100);
-    turnToAngle(25);
-    driveAndTurn(-1,20,30,100);
-    turnToAngle(45);
-    driveAndTurn(-1,20,80,100);
-    intakee.set(1);
-    driveAndTurn(1,20,100,100);
-    turnToAngle(200);
-    mogoclp.set(1);
-    driveAndTurn(-2.8,90,40,100);
-    intakee.set(0);
+    driveAndTurn(-1.1,20,100,100);  
+    intakee.set(0);       
+    wait(250,msec);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    suk(100);
+    intakee.set(0);    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 }
 
 void test(){

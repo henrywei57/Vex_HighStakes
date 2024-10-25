@@ -57,14 +57,14 @@ calibob();
 
 void autonomous(void) {
   con.rumble("- .-. ..--...-. .");
-  test();
+  bluer();
 }
 
 void usercontrol(void) {
   // auton::armmovement(180);
     con.ButtonL1.pressed(mogo_clamp);
     
-    // con.ButtonRight.pressed(armup);
+    con.ButtonL2.pressed(intake);
     // con.ButtonUp.pressed();
     // vex::thread buttonThread(handleButtonPresses);
     // con.ButtonDown.pressed(armupup);
@@ -73,7 +73,7 @@ void usercontrol(void) {
 
 }
 int main() {
-  // mogoclp.set(1);
+  mogoclp.set(0);
   // intakee.set(0);
 
     // auton::armmovement(-35,100);

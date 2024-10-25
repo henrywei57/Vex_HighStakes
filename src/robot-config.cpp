@@ -33,7 +33,7 @@ motor_group intas = motor_group(inta1,inta2);
 motor arm = motor(PORT21, ratio36_1, 0);  
 
 digital_out intakee = digital_out(Brain.ThreeWirePort.A);
-digital_out mogoclp = digital_out(Brain.ThreeWirePort.A);
+digital_out mogoclp = digital_out(Brain.ThreeWirePort.B);
 //pneumatics
 
 
