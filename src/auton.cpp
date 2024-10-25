@@ -63,7 +63,16 @@ void bluel(){
     wait(250,msec);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     suk(100);
     intakee.set(0);    
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+    turnToAngle(90);
+    driveAndTurn(1.2,90,100,100);  
+    wait(100,msec);
+    intas.stop();
+    turnToAngle(0);
+    driveAndTurn(-1,0,100,100);  
+    intakee.set(0);       
+    suk(100);
+    driveAndTurn(3,-90,100,95);  
+
 }
 
 void test(){
