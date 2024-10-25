@@ -12,6 +12,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <math.h>
+#include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace vex;
 
@@ -90,8 +93,35 @@ void qweqweqwe(){
     
 
 }
+    std::vector<char> comboSequence = {'U', 'D', 'U', 'D', 'A', 'B', 'A', 'B'};
+    int timeWindow = 500;
+    void djfng(){
+    static std::vector<char> inputBuffer;
+    static std::vector<int> inputTimes;
+    int currentTime = Brain.timer(timeUnits::msec);
 
+    auto logInput = [&](char input) {
+        inputBuffer.push_back(input);
+        inputTimes.push_back(currentTime);
 
+        if (inputBuffer.size() > comboSequence.size()) {
+            inputBuffer.erase(inputBuffer.begin());
+            inputTimes.erase(inputTimes.begin());
+        }
+
+        if (inputBuffer.size() == comboSequence.size() && 
+            std::equal(inputBuffer.begin(), inputBuffer.end(), comboSequence.begin()) &&
+            std::adjacent_find(inputTimes.begin(), inputTimes.end(), [&](int a, int b) { return b - a > timeWindow; }) == inputTimes.end()) {
+            // Action when combo is detected
+            con.rumble(".--..-..--.");
+        }
+    };
+
+    if (con.ButtonUp.pressing()) logInput('U');
+    else if (con.ButtonDown.pressing()) logInput('D');
+    else if (con.ButtonA.pressing()) logInput('A');
+    else if (con.ButtonB.pressing()) logInput('B');
+    }
     void qpwoei(){
     Brain.Screen.drawLine(100,100,100,200);
       Brain.Screen.drawLine(150,100,150,200);

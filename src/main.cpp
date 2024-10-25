@@ -57,17 +57,17 @@ calibob();
 
 void autonomous(void) {
   con.rumble("- .-. ..--...-. .");
-  // switch(autonoption){
-  //   case 1:
-  //     redl();
-  //   case 2:
-  //     redr();
-  //   case 3:
-  //     bluel();
-  //   case 4:
-  //     bluer();
-  // }
-  bluer();
+  switch(autonoption){
+    case 1:
+      redl();
+    case 2:
+      redr();
+    case 3:
+      bluel();
+    case 4:
+      bluer();
+  }
+  // bluer();
 }
 
 void usercontrol(void) {
@@ -75,6 +75,7 @@ void usercontrol(void) {
     con.ButtonL1.pressed(mogo_clamp);
     
     con.ButtonL2.pressed(intake);
+    vex::thread (djfng);
     // con.ButtonUp.pressed();
     // vex::thread buttonThread(handleButtonPresses);
     // con.ButtonDown.pressed(armupup);
