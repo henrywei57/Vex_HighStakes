@@ -16,10 +16,10 @@ void drawGrid() {
     Brain.Screen.drawLine(240, 30, 240, 0);
 
     // Display labels in each grid section with white text on a black background
-    Brain.Screen.printAt(315, 95, "Close Elim");
-    Brain.Screen.printAt(85, 95, "Far Elim");  
-    Brain.Screen.printAt(80, 195, "Far Qua");  
-    Brain.Screen.printAt(310, 195, "Close Qua");  
+    Brain.Screen.printAt(315, 95, "Red Left");
+    Brain.Screen.printAt(85, 95, "Red Right");  
+    Brain.Screen.printAt(80, 195, "Blue Left");  
+    Brain.Screen.printAt(310, 195, "Blue Right");  
 }
 
 void highlightBlock(int x, int y, bool highlight) {

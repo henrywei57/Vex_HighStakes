@@ -68,6 +68,8 @@ void autonomous(void) {
       bluer();
   }
   // bluer();
+      bluel();
+
 }
 
 void usercontrol(void) {

@@ -42,13 +42,20 @@ void bluer(){
     sped = 0.05;
     driveAndTurn(-1.1,-20,100,100);  
     intakee.set(0);       
-    wait(300,msec);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     suk(100);
+    wait(350,msec);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     turnToAngle(-90);
     driveAndTurn(1.25,-167,100,50);
-    turnToAngle(-150);
-    driveAndTurn(0.5,-270,100,27.5);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-    driveAndTurn(1.3,-250,100,100);
+    turnToAngle(-150,50);
+    driveAndTurn(0.3,-270,100,10);   
+    driveAndTurn(0.2,-235,75,75);   
+    // driveAndTurn(-0.3,-150,100,27.5);
+    // wait(350,msec);        
+    driveAndTurn(0.3,-257.5,70,100);
+    wait(250,msec);
+    intas.stop();          
+    mogoclp.set(1);
+    // driveAndTurn(0.7,-257.5,70,100);
 }
 
 void redr(){
@@ -60,19 +67,23 @@ void bluel(){
     sped = 0.05;
     driveAndTurn(-1.1,20,100,100);  
     intakee.set(0);       
-    wait(250,msec);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     suk(100);
-    intakee.set(0);    
+    wait(350,msec);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     turnToAngle(90);
-    driveAndTurn(1.2,90,100,100);  
-    wait(100,msec);
-    intas.stop();
-    turnToAngle(0);
-    driveAndTurn(-1,0,100,100);  
-    intakee.set(0);       
-    suk(100);
-    driveAndTurn(3,-90,100,95);  
 
+    inta2.stop();
+    driveAndTurn(1,90,100,50);
+    turnToAngle(270);
+    inta1.stop();
+    intakee.set(1);
+    turnToAngle(90);
+    intas.stop();
+    driveAndTurn(-2.7,180,83.2,100);
+    driveAndTurn(-0.227,180,25,100);
+    driveAndTurn(0.1965,180,25,100);
+    suk(100);
+    wait(500,msec);
+    driveAndTurn(1.25,180,100,100);
 }
 
 void test(){
