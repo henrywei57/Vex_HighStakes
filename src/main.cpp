@@ -57,6 +57,16 @@ calibob();
 
 void autonomous(void) {
   con.rumble("- .-. ..--...-. .");
+  // switch(autonoption){
+  //   case 1:
+  //     redl();
+  //   case 2:
+  //     redr();
+  //   case 3:
+  //     bluel();
+  //   case 4:
+  //     bluer();
+  // }
   bluer();
 }
 
