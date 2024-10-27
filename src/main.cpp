@@ -60,15 +60,19 @@ void autonomous(void) {
   switch(autonoption){
     case 1:
       redl();
+      break;
     case 2:
       redr();
+      break;
     case 3:
       bluel();
+      break;
     case 4:
       bluer();
+      break;
   }
   // bluer();
-      bluel();
+      // bluel();
 
 }
 
@@ -76,8 +80,7 @@ void usercontrol(void) {
   // auton::armmovement(180);
     con.ButtonL1.pressed(mogo_clamp);
     
-    con.ButtonL2.pressed(intake);
-    vex::thread (djfng);
+    con.ButtonRight.pressed(intake);
     // con.ButtonUp.pressed();
     // vex::thread buttonThread(handleButtonPresses);
     // con.ButtonDown.pressed(armupup);
@@ -87,7 +90,7 @@ void usercontrol(void) {
 }
 int main() {
   mogoclp.set(0);
-  // intakee.set(0);
+  intakee.set(1);
 
     // auton::armmovement(-35,100);
   Competition.autonomous(autonomous);

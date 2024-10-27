@@ -45,6 +45,7 @@ void wrrfliuu3(){
 }
 void driver(){
   while(1){
+    vex::thread(djfng);
     // double x = arm.position(degrees);
     if(con.ButtonR1.pressing()){
       // intas.spin(fwd, 100, pct);

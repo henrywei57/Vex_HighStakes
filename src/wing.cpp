@@ -5,8 +5,8 @@
 
 using namespace vex;
 
-bool Inta = 1;
-bool Clamp = 1;
+bool Inta = 0;
+bool Clamp = 0;
 
 
 
