@@ -19,6 +19,7 @@ Driver control: Joystick 3 controls the vertical acceleration of the chassis
 #include "wing.h"
 #include "utility/buttons.h"
 #include "other_function.h"
+#include "odom_stuff_idk_still_trying.h"
 
 using namespace vex;
 using namespace auton;
@@ -56,6 +57,8 @@ calibob();
 }
 
 void autonomous(void) {
+  vex::thread odom_thread(odom);
+
   con.rumble("- .-. ..--...-. .");
   switch(autonoption){
     case 1:
@@ -73,7 +76,7 @@ void autonomous(void) {
   }
   // bluer();
       // bluel();
-
+  printf("(%f, %f)", x, y);
 }
 
 void usercontrol(void) {
