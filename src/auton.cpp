@@ -85,14 +85,14 @@ void bluel(){
     suk(100);
     wait(350,msec);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     turnToAngle(90);
-    driveAndTurn(1,90,100,50);
+    driveAndTurn(1,85,100,50);
     turnToAngle(25);
     driveAndTurn(2.3,0,100,100);
     mogoclp.set(1);
     wait(300,msec);
     inta1.stop();
     turnToAngle(-125);
-    driveAndTurn(3,-115,100,100);
+    driveAndTurn(3,-115,100,90);
     mogoclp.set(0);
 }
 

@@ -34,6 +34,12 @@
 		"stdexcept": "cpp",
 		"thread": "cpp",
 		"tuple": "cpp",
-		"utility": "cpp"
+		"utility": "cpp",
+		"algorithm": "cpp",
+		"deque": "cpp",
+		"unordered_map": "cpp",
+		"vector": "cpp",
+		"fstream": "cpp",
+		"numeric": "cpp"
 	}
 }
