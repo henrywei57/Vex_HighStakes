@@ -2,6 +2,8 @@
 
 void board();
 extern int autonoption;
+void drawImageOnBrain();
+void loadImageData();
 // void resetPuncher();
 // void puncherThread();
 // int getPunchedCount();

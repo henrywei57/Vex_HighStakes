@@ -18,8 +18,8 @@ double wheelCircumference = 2 * M_PI * wheelRadius;
 
 double startHeading = 90;
 
-double x = 0;
-double y = 0;
+double xasd = 0;
+double yasd = 0;
 
 void odom(){
     leftmo.resetPosition();
@@ -35,8 +35,8 @@ void odom(){
 
         double changeInDis = traveledDis - previousDisTraveled;
 
-        x += changeInDis * std::cos(heading * (M_PI / 180));
-        y += changeInDis * std::sin(heading * (M_PI / 180));
+        xasd += changeInDis * std::cos(heading * (M_PI / 180));
+        yasd += changeInDis * std::sin(heading * (M_PI / 180));
 
         previousDisTraveled = traveledDis;
 

@@ -7,6 +7,7 @@ using namespace vex;
 
 bool Inta = 0;
 bool Clamp = 0;
+bool ifrhf = 0;
 
 
 
@@ -30,6 +31,16 @@ void mogo_clamp(){
     else if(!Clamp){
         intakee.set(false);
         Clamp = 1;
+    }
+}
+void asdr(){
+    if(ifrhf){
+        shgrjn.set(1);
+        ifrhf = 0;
+    }
+    else if(!ifrhf){
+        shgrjn.set(0);
+        ifrhf = 1;
     }
 }
 

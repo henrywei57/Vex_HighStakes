@@ -1,3 +1,3 @@
 void odom();
-extern double x;
-extern double y;
+extern double xasd;
+extern double yasd;

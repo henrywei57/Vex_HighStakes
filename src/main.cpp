@@ -20,6 +20,9 @@ Driver control: Joystick 3 controls the vertical acceleration of the chassis
 #include "utility/buttons.h"
 #include "other_function.h"
 #include "odom_stuff_idk_still_trying.h"
+#include <vector>
+#include <iostream>
+
 
 using namespace vex;
 using namespace auton;
@@ -57,7 +60,7 @@ calibob();
 }
 
 void autonomous(void) {
-  vex::thread odom_thread(odom);
+  // vex::thread odom_thread(odom);
 
   con.rumble("- .-. ..--...-. .");
   switch(autonoption){
@@ -68,22 +71,43 @@ void autonomous(void) {
       redr();
       break;
     case 3:
-      bluel();
+      test();
       break;
     case 4:
       bluer();
       break;
+    default:
+      bluel();
   }
   // bluer();
       // bluel();
-  printf("(%f, %f)", x, y);
+  // printf("(%f, %f)", xasd, yasd);
 }
 
 void usercontrol(void) {
+  Brain.Screen.clearScreen();
+
+
+
+    // std::vector<std::vector<uint32_t>> imageData = loadImageData();
+    
+    // Define the image width and height
+    // int imageWidth = imageData[0].size();
+    // int imageHeight = imageData.size();
+// 
+    // Draw the image on the VEX Brain screen
+    // drawImageOnBrain(imageData, imageWidth, imageHeight);
+
+  // vex::thread kujyguigy(drawing);
+
+
+  
+  
   // auton::armmovement(180);
+    con.ButtonRight.pressed(asdr);
     con.ButtonL1.pressed(mogo_clamp);
     
-    con.ButtonRight.pressed(intake);
+    con.ButtonY.pressed(intake);
     // con.ButtonUp.pressed();
     // vex::thread buttonThread(handleButtonPresses);
     // con.ButtonDown.pressed(armupup);
@@ -92,8 +116,6 @@ void usercontrol(void) {
 
 }
 int main() {
-  mogoclp.set(0);
-  intakee.set(1);
 
     // auton::armmovement(-35,100);
   Competition.autonomous(autonomous);

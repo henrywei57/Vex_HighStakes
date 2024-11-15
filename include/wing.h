@@ -6,4 +6,5 @@ void dispboard();
 void armup();
 void armdown();
 void armupup();
+void asdr();
 extern bool armmermer;

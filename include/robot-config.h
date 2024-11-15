@@ -24,9 +24,12 @@ extern digital_out mogoclp;
 extern digital_out intakee;
 extern digital_out racistpiston;
 extern digital_out wrgclr;
+extern digital_out shgrjn;
 extern distance dst;
-extern optical racistsensor;
+extern distance aaasssddd;
 extern motor arm;
+
+
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 
