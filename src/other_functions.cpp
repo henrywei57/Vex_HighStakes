@@ -279,62 +279,85 @@ void loading(int time,vex::color clr){
 
 
 
+#include <sstream>  // For std::ostringstream
 
+template <typename T>
+std::string to_string_custom(const T& value) {
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+}
+void drawing() {
+    #include <string>
+    const char* art[] = {
+        "                      _ooOoo",
+        "                     o8888888o",
+        "                     88\" . \"88 ",
+        "                     (| -_- |)",
+        "                     O\\  =  /O",
+        "                   ___/`---'\\____",
+        "                .'  \\\\|     |//  `.",
+        "               /  \\\\|||  :  |||//  \\",
+        "              /  _||||| -:- |||||_  \\",
+        "              |   | \\\\  -  /// |   |",
+        "              | \\_|  ''\\---/''  |   |",
+        "              \\  .-\\__       __/-.  /",
+        "            ___`. .'  /--.--\\ `. . __",
+        "       .\"\" '<  `.___\\_<|>_/__.'  >'\"\".",
+        "       | | :  `- \\`.;`\\ _ /`;.`/ - ` : | |",
+        "      \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /",
+        "  =======`-.____`-.___\\_____/___.-`____.-'=======",
+        "                       `=---='",
+        "   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "               佛祖保佑       永無BUG",
+        "",
+        " ----- ",
+        "/ o o \\ ",
+        "|  <   |",
+        "| / \\  |     kyle masterpiece",
+        "||   | | ",
+        " ------ ",
+        " w o|o  w ", 
+    };
 
-void drawing(){
-#include <string>
-const char* art[] = {
-    "                      _ooOoo",
-    "                     o8888888o",
-    "                     88\" . \"88 ",
-    "                     (| -_- |)",
-    "                     O\\  =  /O",
-    "                   ___/`---'\\____",
-    "                .'  \\\\|     |//  `.",
-    "               /  \\\\|||  :  |||//  \\",
-    "              /  _||||| -:- |||||_  \\",
-    "              |   | \\\\  -  /// |   |",
-    "              | \\_|  ''\\---/''  |   |",
-    "              \\  .-\\__       __/-.  /",
-    "            ___`. .'  /--.--\\ `. . __",
-    "       .\"\" '<  `.___\\_<|>_/__.'  >'\"\".",
-    "       | | :  `- \\`.;`\\ _ /`;.`/ - ` : | |",
-    "      \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /",
-    "  =======`-.____`-.___\\_____/___.-`____.-'=======",
-    "                       `=---='",
-    "   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-// " ________  ________ ________  ________ ________     ___    ___ ",
-// "|\  ___  \|\   ____\\  ___  \|\   ____\\  ___  \   |\  \  /  /|", 
-// "\ \____   \ \  \___\ \____   \ \  \___\ \____   \  \ \  \/  / /", 
-// " \|____|\  \ \  \___\|____|\  \ \  \___\|____|\  \  \ \    / / ", 
-// "     __\_\  \ \  ___  \ __\_\  \ \  ___  \ __\_\  \  /     \/  ", 
-// "    |\_______\ \_______\\_______\ \_______\\_______\/  /\   \  ", 
-// "    \|_______|\|_______\|_______|\|_______\|_______/__/ /\ __\ ", 
-// "                                                   |__|/ \|__| "
-};
     while (true) {
-    int numLines = 10; // Number of lines to display at once
-    int totalLines = sizeof(art) / sizeof(art[0]);
-    int scrollPosition = 0;
+        int numLines = 10; // Number of lines to display at once
+        int totalLines = sizeof(art) / sizeof(art[0]);
+        int scrollPosition = 0;
 
-    while (true) {
-        Brain.Screen.clearScreen();
+        while (true) {
+            Brain.Screen.clearScreen();
 
-        // Display the portion of the ASCII art that fits on the screen
-        for (int i = 0; i < numLines; ++i) {
-            int lineIndex = (scrollPosition + i) % totalLines;
-            Brain.Screen.setCursor(i + 1, 1); // Set cursor to row i+1, column 1
-            Brain.Screen.print(art[lineIndex]);
+            // Display the portion of the ASCII art that fits on the screen
+            for (int i = 0; i < numLines; ++i) {
+                int lineIndex = (scrollPosition + i) % totalLines;
+                Brain.Screen.setCursor(i + 1, 1); // Set cursor to row i+1, column 1
+
+                // Insert dynamic data at specific lines
+                if (lineIndex == 20) { // Replace 20 with the desired line index for left motor
+                    double leftMotorTemp = leftmo.temperature(vex::temperatureUnits::celsius);
+                    Brain.Screen.print("Left Motor Temp: %.2f C", leftMotorTemp);
+                } else if (lineIndex == 21) { // Replace 21 with the desired line index for right motor
+                    double rightMotorTemp = rightmo.temperature(vex::temperatureUnits::celsius);
+                    Brain.Screen.print("Right Motor Temp: %.2f C", rightMotorTemp);
+                } else if (lineIndex == 22) { // Replace 22 with the desired line index for intake
+                    int intakeStatus = intas.temperature(vex::temperatureUnits::celsius); // Replace `intas` with your intake motor group
+                    Brain.Screen.print("Intake Status: %d%%", intakeStatus);
+                } else {
+                    Brain.Screen.print(art[lineIndex]);
+                }
+            }
+
+            // Update the scroll position
+            scrollPosition++;
+            if (scrollPosition >= totalLines) {
+                scrollPosition = 0; // Reset to loop
+            }
+
+            vex::task::sleep(200); // Adjust the sleep duration for scrolling speed
         }
-
-        // Update the scroll position
-        scrollPosition++;
-        if (scrollPosition >= totalLines) {
-            scrollPosition = 0; // Reset to loop
-        }
-
-        vex::task::sleep(200); // Adjust the sleep duration for scrolling speed
     }
 }
 
-}
+
+

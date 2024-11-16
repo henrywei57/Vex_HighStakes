@@ -5,9 +5,9 @@
 
 using namespace vex;
 
-bool Inta = 0;
-bool Clamp = 0;
-bool ifrhf = 0;
+bool Inta = 1;
+bool Clamp = 1;
+bool ifrhf = 1;
 
 
 

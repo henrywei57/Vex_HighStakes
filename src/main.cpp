@@ -53,6 +53,7 @@ void pre_auton(void) {
 
 
   
+
 calibob();
 
 
@@ -71,13 +72,13 @@ void autonomous(void) {
       redr();
       break;
     case 3:
-      test();
+      bluel();
       break;
     case 4:
       bluer();
       break;
     default:
-      bluel();
+      redl();
   }
   // bluer();
       // bluel();
@@ -98,7 +99,7 @@ void usercontrol(void) {
     // Draw the image on the VEX Brain screen
     // drawImageOnBrain(imageData, imageWidth, imageHeight);
 
-  // vex::thread kujyguigy(drawing);
+  vex::thread kujyguigy(drawing);
 
 
   

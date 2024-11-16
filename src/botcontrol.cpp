@@ -15,7 +15,7 @@ using namespace auton;
 bool isThreadRunning = false;
 
 // Macro to check if both R1 and R2 buttons are pressed
-#define BOTH_BUTTONS_PRESSED (con.ButtonR1.pressing() && con.ButtonR2.pressing())
+#define BOTH_BUTTONS_PRESSED (con.ButtonDown.pressing())
 
 // Macro to set the `isThreadRunning` flag
 #define SET_THREAD_RUNNING(state) isThreadRunning = state
@@ -24,7 +24,7 @@ bool isThreadRunning = false;
 void reve() {
     SET_THREAD_RUNNING(true);  // Set flag to indicate the thread is active
     intas.spin(fwd, 30, pct);
-    wait(135,msec);
+    wait(60,msec);
     intas.spin(reverse, 100, pct);
     wait(750, msec);
     intas.stop(brake);  // Stop with brake after the reverse motion
@@ -35,20 +35,23 @@ void driver() {
     int county = 0;
     while (1) {
         // Check if the reve thread is not already running
-        if (!isThreadRunning) {
-            if (BOTH_BUTTONS_PRESSED && aaasssddd.objectDistance(inches) < 2) {
-                vex::thread reveThread(reve);    // Start the reve function in a new thread
-            } 
-            else if (con.ButtonR1.pressing() && !isThreadRunning) {
-                intas.spin(fwd, 100, pct);
-            } 
-            else if (con.ButtonR2.pressing() && !isThreadRunning) {
-                intas.spin(reverse, 100, pct);
-            } 
-            else if (!isThreadRunning) {
-                intas.stop(coast);
-            }
-        }
+if (!isThreadRunning) {
+    if (BOTH_BUTTONS_PRESSED && aaasssddd.objectDistance(inches) < 1.3) {
+        vex::thread reveThread(reve);    // Start the reve function in a new thread
+    } else if (BOTH_BUTTONS_PRESSED && !isThreadRunning) {
+        intas.spin(fwd, 100, pct);
+    }
+    else if (con.ButtonR1.pressing() && !isThreadRunning) {
+        intas.spin(fwd, 100, pct);
+    } 
+    else if (con.ButtonR2.pressing() && !isThreadRunning) {
+        intas.spin(reverse, 100, pct);
+    } 
+    else if (!isThreadRunning) {
+        intas.stop(coast);
+    }
+}
+
 
         // Arm movement control
         if (con.ButtonRight.pressing()) {

@@ -40,6 +40,16 @@
 		"unordered_map": "cpp",
 		"vector": "cpp",
 		"fstream": "cpp",
-		"numeric": "cpp"
+		"numeric": "cpp",
+		"atomic": "cpp",
+		"bitset": "cpp",
+		"condition_variable": "cpp",
+		"cstddef": "cpp",
+		"cstring": "cpp",
+		"list": "cpp",
+		"mutex": "cpp",
+		"system_error": "cpp",
+		"cinttypes": "cpp",
+		"regex": "cpp"
 	}
 }
