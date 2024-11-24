@@ -10,3 +10,6 @@ void racistmech(vex::color x);
 void drawing();
 void calibrateArm();
 void djfng();
+void drawLogo();
+void drawLogo2();
+void drawLogo3();

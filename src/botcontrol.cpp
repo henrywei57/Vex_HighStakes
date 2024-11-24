@@ -24,7 +24,7 @@ bool isThreadRunning = false;
 void reve() {
     SET_THREAD_RUNNING(true);  // Set flag to indicate the thread is active
     intas.spin(fwd, 30, pct);
-    wait(60,msec);
+    wait(35,msec);
     intas.spin(reverse, 100, pct);
     wait(750, msec);
     intas.stop(brake);  // Stop with brake after the reverse motion

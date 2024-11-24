@@ -33,7 +33,7 @@ void PIDControl::computeFromError(double error) {
         deltaError = newError - prevError;
     }
     prevError = newError;
-}
+}   
 double PIDControl::getValue() {
     return kP*newError + kI*sumError + kD*deltaError;
 }

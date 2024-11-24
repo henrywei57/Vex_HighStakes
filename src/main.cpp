@@ -78,11 +78,15 @@ void autonomous(void) {
       bluer();
       break;
     default:
-      redl();
+      test();
   }
   // bluer();
       // bluel();
   // printf("(%f, %f)", xasd, yasd);
+}
+
+void switchImage(){
+  drawLogo();
 }
 
 void usercontrol(void) {
@@ -99,7 +103,7 @@ void usercontrol(void) {
     // Draw the image on the VEX Brain screen
     // drawImageOnBrain(imageData, imageWidth, imageHeight);
 
-  vex::thread kujyguigy(drawing);
+  vex::thread kujyguigy(switchImage);
 
 
   
