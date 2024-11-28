@@ -40,6 +40,8 @@ bool intawing = 0;
 
 int endX = originX + width;
 
+bool autonSelector = true;
+
 bool taboption = 1;
     float deadband(float input, float width){
   if (fabs(input)<width){
@@ -48,13 +50,14 @@ bool taboption = 1;
   return(input);
 }
 void pre_auton(void) {
+  // board();
   vexcodeInit();
-  board();
+calibob();
+
 
 
   
 
-calibob();
 
 
 
@@ -63,7 +66,7 @@ calibob();
 void autonomous(void) {
   // vex::thread odom_thread(odom);
 
-  con.rumble("- .-. ..--...-. .");
+  con.rumble("-.-...--...-..");
   switch(autonoption){
     case 1:
       redl();
@@ -77,33 +80,32 @@ void autonomous(void) {
     case 4:
       bluer();
       break;
-    default:
-      test();
+    default:;
+      // test();
   }
+  test();
   // bluer();
       // bluel();
   // printf("(%f, %f)", xasd, yasd);
 }
 
-void switchImage(){
-  drawLogo();
+void asdasddd(){
+  // while(1){
+  //   drawLogo2();
+  //   wait(3.5,sec);
+    drawLogo();
+  //   wait(3.5,sec);
+  // }
 }
 
 void usercontrol(void) {
   Brain.Screen.clearScreen();
+  autonSelector = false;
 
 
 
-    // std::vector<std::vector<uint32_t>> imageData = loadImageData();
-    
-    // Define the image width and height
-    // int imageWidth = imageData[0].size();
-    // int imageHeight = imageData.size();
-// 
-    // Draw the image on the VEX Brain screen
-    // drawImageOnBrain(imageData, imageWidth, imageHeight);
 
-  vex::thread kujyguigy(switchImage);
+  vex::thread kujyguigy(asdasddd);
 
 
   
@@ -121,7 +123,7 @@ void usercontrol(void) {
 
 }
 int main() {
-
+  // autonSelectorImg();
     // auton::armmovement(-35,100);
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);

@@ -1,7 +1,7 @@
 #include "vex.h"
 #include "robot-config.h"
 #include <vector>
-
+#include "other_function.h"
 
 using namespace vex;
 
@@ -49,31 +49,38 @@ void highlightBlock(int x, int y, bool highlight) {
 }
 
 void board() {
-    drawGrid(); // Draw initial grid
+    // autonSelectorImg(); // Display the initial autonomous selector image
 
-    while (1) {
-        if (Brain.Screen.pressing()) {
+    while (true) {
+        if (Brain.Screen.pressing()&&autonSelector) {
             int X = Brain.Screen.xPosition();
             int Y = Brain.Screen.yPosition();
 
-            drawGrid();  // Reset grid before updating
-
-            // Check which block is selected and highlight it
+            // Check which block is selected
             if ((Y <= 120) && (X >= 240)) {
-                highlightBlock(X, Y, true);
-                autonoption = 1;
-            } else if ((Y <= 120) && (X <= 240)) {
-                highlightBlock(X, Y, true);
-                autonoption = 2;
-            } else if ((Y >= 120) && (X <= 240)) {
-                highlightBlock(X, Y, true);
-                autonoption = 3;
-            } else if ((Y >= 120) && (X >= 240)) {
-                highlightBlock(X, Y, true);
-                autonoption = 4;
+                if (autonoption != 1) { // Only update if the option changes
+                    autonoption = 1;
+                    // autonSelectorRedR(); // Change the image for this option
+                }
+            } else if ((Y <= 120) && (X < 240)) {
+                if (autonoption != 2) {
+                    autonoption = 2;
+                    // autonSelectorRedL();
+                }
+            } else if ((Y > 120) && (X < 240)) {
+                if (autonoption != 3) {
+                    autonoption = 3;
+                    // autonSelectorBlueL();
+                }
+            } else if ((Y > 120) && (X >= 240)) {
+                if (autonoption != 4) {
+                    autonoption = 4;
+                    // autonSelectorBlueR();
+                }
             }
         }
-        wait(20, msec);
+
+        wait(20, msec); // Add a slight delay to prevent CPU overuse
     }
 }
 
@@ -124,5 +131,3 @@ void board() {
 // Define screen resolution (example for VEX Brain 480x240)
 const int SCREEN_WIDTH = 480;
 const int SCREEN_HEIGHT = 240;
-
-
