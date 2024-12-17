@@ -20,15 +20,15 @@ extern motor inta1;
 extern motor inta2;
 extern motor inta3;
 extern motor_group intas;
-extern digital_out mogoclp;
-extern digital_out intakee;
+extern digital_out armbig;
+extern digital_out clamp;
 extern digital_out racistpiston;
 extern digital_out wrgclr;
-extern digital_out shgrjn;
+extern digital_out armsmall;
 extern distance dst;
 extern distance aaasssddd;
 extern motor arm;
-
+extern optical colorseancor;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

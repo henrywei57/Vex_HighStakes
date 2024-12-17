@@ -14,32 +14,32 @@ bool ifrhf = 1;
 
 void intake(){
     if(Inta){
-        mogoclp.set(true);
+        armbig.set(true);
         Inta = 0;
     }
     else if(!Inta){
-        mogoclp.set(false);
+        armbig.set(false);
         Inta = 1;
     }
 }
 
 void mogo_clamp(){
     if(Clamp){
-        intakee.set(1);
+        clamp.set(1);
         Clamp = 0;
     }
     else if(!Clamp){
-        intakee.set(false);
+        clamp.set(false);
         Clamp = 1;
     }
 }
 void asdr(){
     if(ifrhf){
-        shgrjn.set(1);
+        armsmall.set(1);
         ifrhf = 0;
     }
     else if(!ifrhf){
-        shgrjn.set(0);
+        armsmall.set(0);
         ifrhf = 1;
     }
 }

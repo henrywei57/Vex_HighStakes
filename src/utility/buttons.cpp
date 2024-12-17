@@ -49,7 +49,7 @@ void highlightBlock(int x, int y, bool highlight) {
 }
 
 void board() {
-    // autonSelectorImg(); // Display the initial autonomous selector image
+    autonSelectorImg(); // Display the initial autonomous selector image
 
     while (true) {
         if (Brain.Screen.pressing()&&autonSelector) {
@@ -59,23 +59,23 @@ void board() {
             // Check which block is selected
             if ((Y <= 120) && (X >= 240)) {
                 if (autonoption != 1) { // Only update if the option changes
-                    autonoption = 1;
-                    // autonSelectorRedR(); // Change the image for this option
+                    autonoption = 2;
+                    autonSelectorRedR(); // Change the image for this option
                 }
             } else if ((Y <= 120) && (X < 240)) {
                 if (autonoption != 2) {
-                    autonoption = 2;
-                    // autonSelectorRedL();
+                    autonoption = 1;
+                    autonSelectorRedL();
                 }
             } else if ((Y > 120) && (X < 240)) {
                 if (autonoption != 3) {
                     autonoption = 3;
-                    // autonSelectorBlueL();
+                    autonSelectorBlueL();
                 }
             } else if ((Y > 120) && (X >= 240)) {
                 if (autonoption != 4) {
                     autonoption = 4;
-                    // autonSelectorBlueR();
+                    autonSelectorBlueR();
                 }
             }
         }

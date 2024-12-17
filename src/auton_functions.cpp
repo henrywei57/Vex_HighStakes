@@ -17,7 +17,7 @@ double heading_convert(double heading){
         double initLeftMoterDegree = leftmo.position(degrees);
         double initRightMoterDegree = rightmo.position(degrees);
         // PIDControl drivePID(sped, 0, 0, 2);
-        PIDControl drivePID(sped, 0, 0, 2);
+        PIDControl drivePID(sped, 0, 0, 5);
         PIDControl rotateToPID(0.46, 0, 0, 2);
         timer timeout;
         while(timeout.time(msec) <= timeoutMs && (!drivePID.reachedGoal() || !rotateToPID.reachedGoal())) {

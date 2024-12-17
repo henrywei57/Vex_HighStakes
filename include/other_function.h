@@ -17,3 +17,5 @@ void autonSelectorBlueL();
 void autonSelectorBlueR();
 void drawLogo();
 void drawLogo2();
+void colorFilterR();
+void colorFilterB();

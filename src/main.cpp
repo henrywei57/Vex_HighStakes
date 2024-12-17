@@ -9,6 +9,8 @@ Driver control: Joystick 3 controls the vertical acceleration of the chassis
 */
 
 
+
+
 #include "vex.h"
 #include "botcontrol.h"
 #include "basic_control.h"
@@ -22,6 +24,7 @@ Driver control: Joystick 3 controls the vertical acceleration of the chassis
 #include "odom_stuff_idk_still_trying.h"
 #include <vector>
 #include <iostream>
+#include "colorFilter.h"
 
 
 using namespace vex;
@@ -50,7 +53,7 @@ bool taboption = 1;
   return(input);
 }
 void pre_auton(void) {
-  // board();
+  board();
   vexcodeInit();
 calibob();
 
@@ -80,12 +83,17 @@ void autonomous(void) {
     case 4:
       bluer();
       break;
-    default:;
+    default:
+      soloawp();
       // test();
   }
-  test();
+
+  // test();
   // bluer();
-      // bluel();
+  // redl();                                                                                                                                                                             
+      // bluele();
+      // redl();
+      // redr();
   // printf("(%f, %f)", xasd, yasd);
 }
 
@@ -93,17 +101,20 @@ void asdasddd(){
   // while(1){
   //   drawLogo2();
   //   wait(3.5,sec);
-    drawLogo();
+    // drawLogo();
   //   wait(3.5,sec);
   // }
 }
+
+
+
 
 void usercontrol(void) {
   Brain.Screen.clearScreen();
   autonSelector = false;
 
 
-
+vex::thread dasdasda(getHue);
 
   vex::thread kujyguigy(asdasddd);
 
@@ -123,7 +134,8 @@ void usercontrol(void) {
 
 }
 int main() {
-  // autonSelectorImg();
+  autonSelectorImg();
+    colorseancor.setLightPower(100,pct);
     // auton::armmovement(-35,100);
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
