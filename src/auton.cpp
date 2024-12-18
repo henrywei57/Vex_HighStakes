@@ -15,6 +15,40 @@ unsuk(speed): Use the outtake
 */
 
 
+
+bool xxxxx = 1;
+void redfffffilter() {
+    while (xxxxx) {
+        int hue = colorseancor.hue();  // Get current hue value
+        if (hue < 30 && hue>0&&colorseancor.objectDetectThreshold()) {  // Check hue and object detection
+            wait(200, msec);  // Debounce delay
+            intas.stop(hold);  // Stop intake motor
+            con.rumble("-");
+            wait(100, msec);  // Hold for 1 second
+            suk(100);
+        }
+        wait(10, msec);  // Reduce CPU usage
+    }
+}
+
+
+
+bool xxxxxx = 1;
+void bluefffffilter() {
+    while (xxxxxx) {
+        int hue = colorseancor.hue();  // Get current hue value
+        if (hue < 300 && hue>80&&colorseancor.objectDetectThreshold()) {  // Check hue and object detection
+            wait(200, msec);  // Debounce delay
+            intas.stop(hold);  // Stop intake motor
+            con.rumble("-");
+            wait(100, msec);  // Hold for 1 second
+            suk(100);
+        }
+        wait(10, msec);  // Reduce CPU usage
+    }
+}
+
+
 void aaassdasd(int x){
     wait(x,msec);
     inta2.spin(reverse,100,pct);
@@ -61,6 +95,7 @@ void asddd(){
 
 
 void redl(){
+    vex::thread iglhlggerhjfgwkuyg(bluefffffilter);
     sped = 0.05;
     clamp.set(0);
     setHeading(0);
@@ -84,21 +119,6 @@ void redl(){
     turnToAngle(-5);
     driveAndTurn(2,30, 100, 100);
 
-}
-
-bool xxxxx = 1;
-void redfffffilter() {
-    while (xxxxx) {
-        int hue = colorseancor.hue();  // Get current hue value
-        if (hue < 30 && hue>0&&colorseancor.objectDetectThreshold()) {  // Check hue and object detection
-            wait(200, msec);  // Debounce delay
-            intas.stop(hold);  // Stop intake motor
-            con.rumble("-");
-            wait(100, msec);  // Hold for 1 second
-            suk(100);
-        }
-        wait(10, msec);  // Reduce CPU usage
-    }
 }
 
 
@@ -139,6 +159,7 @@ void armredl(){
 }
 
 void redr(){
+    vex::thread iglhlggerhjfgwkuyg(bluefffffilter);
     // vex::thread([]() {
     // colorFilterR();
     // });   / 
@@ -163,16 +184,16 @@ void redr(){
     vex::thread armThread(armredl);
     turnToAngle(-237.5);
     armsmall.set(1);
-    driveAndTurn(2.5, -270, 100,90);
-    turnToAngle(-360);
+    driveAndTurn(2.5, -275, 100,90);
+    turnToAngle(-305);
     suk(100);
     armsmall.set(0);
-    driveAndTurn(1.4, -350, 100,100);
 }
 
 
 
 void bluel(){
+    vex::thread asdfefiubhfrvcu(redfffffilter);
     // vex::thread([]() {
     // colorFilterR();
     // });   / 
@@ -248,6 +269,7 @@ revesThread.join();  // Ensure the thread finishes cleanly
 
 
 void bluele(){ //remember to change for redr
+    vex::thread asdfefiubhfrvcu(redfffffilter);
     // vex::thread([]() {
     // colorFilterR();
     // });   / 
@@ -282,6 +304,7 @@ void bluele(){ //remember to change for redr
 }
 
 void redle(){ //can copy paste into bluer, change degree 
+    vex::thread iglhlggerhjfgwkuyg(bluefffffilter);
     sped = 0.05;
     clamp.set(0);
     setHeading(0);
@@ -313,7 +336,8 @@ void asdasdasd(){
     }
 }
 
-void soloawp(){
+void soloawpr(){
+    vex::thread iglhlggerhjfgwkuyg(bluefffffilter);
     sped = 0.05;
     clamp.set(0);
     setHeading(0);
@@ -327,7 +351,7 @@ void soloawp(){
     driveAndTurn(-2,45, 40, 60);
     clamp.set(1);
     sped = 0.05;
-    turnToAngle(225,100,800);
+    turnToAngle(235,100,800);
     suk(100);
     driveAndTurn(1.15,180, 75, 100);
     driveAndTurn(0.6,180, 100, 100);
@@ -335,12 +359,48 @@ void soloawp(){
     clamp.set(0);
     inta1.stop();
     driveAndTurn(0.6,90, 100, 100,500);
-    turnToAngle(175,100,500);
-    driveAndTurn(-2.3,180, 100, 80,1200);
+    turnToAngle(135,100);
+    driveAndTurn(-2.3,175, 100, 80,1200);
     driveAndTurn(-1.5,235, 100, 100,1000);
     suk(100);
     clamp.set(1);
     turnToAngle(270);
+    // armsmall.set(1);
+    // turnToAngle(180);
+    
+}
+
+
+
+void soloawpb(){
+    sped = 0.05;
+    clamp.set(0);
+    setHeading(0);
+    inta2.spin(fwd,20,pct);
+    armbig.set(1);
+    driveAndTurn(0.853,90, 60, 20);
+    armbig.set(0);
+    driveAndTurn(-0.1,90, 60, 20,500);
+    aaassdasd(300);
+    sped = 0.07;
+    driveAndTurn(-2,45, 40, 60);
+    clamp.set(1);
+    sped = 0.05;
+    turnToAngle(235,100,800);
+    suk(100);
+    driveAndTurn(1.15,180, 75, 100);
+    driveAndTurn(0.6,180, 100, 100);
+    turnToAngle(90,65,400);
+    clamp.set(0);
+    inta1.stop();
+    driveAndTurn(0.6,90, 100, 100,500);
+    turnToAngle(165,100);
+    driveAndTurn(-2.3,165, 100, 80,1200);
+    driveAndTurn(-1.5,235, 100, 100,1000);
+    suk(100);
+    clamp.set(1);
+    turnToAngle(270);
+    armbig.set(1);
     // armsmall.set(1);
     // turnToAngle(180);
     

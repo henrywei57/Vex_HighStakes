@@ -7,4 +7,5 @@ void bluel();
 void test();
 void bluele();
 void redle();
-void soloawp();
+void soloawpr();
+void soloawpb();

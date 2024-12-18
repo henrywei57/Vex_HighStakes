@@ -59,7 +59,7 @@ bool xxxx = true;
 void blueffffilter() {
     while (xxxx) {
         int hue = colorseancor.hue();  // Get current hue value
-        if (hue > 80 && hue<300&&colorseancor.objectDetectThreshold()) {  // Check hue and object detection
+        if (hue > 80 && hue<300&&colorseancor.isNearObject()) {  // Check hue and object detection
             wait(200, msec);  // Debounce delay
             hehe = false;
             intas.stop(hold);  // Stop intake motor
@@ -74,7 +74,7 @@ void blueffffilter() {
 void redffffilter() {
     while (xxxx) {
         int hue = colorseancor.hue();  // Get current hue value
-        if (hue < 30 && hue>0&&colorseancor.objectDetectThreshold()) {  // Check hue and object detection
+        if (hue < 30 && hue>0&&colorseancor.isNearObject()) {  // Check hue and object detection
             wait(200, msec);  // Debounce delay
             hehe = false;
             intas.stop(hold);  // Stop intake motor
@@ -90,9 +90,10 @@ void redffffilter() {
 
 void driver() {
     int county = 0;
-    vex::thread asdddasdefeww(redffffilter);  // Create the thread object for dddaaa
+    // vex::thread asdddasdefeww(blueffffilter);  // Create the thread object for dddaaa
+    vex::thread asdsdasdas(redffffilter);  // Create the thread object for dddaaa
 
-    while (1) {
+    while (1) { 
         int detectedColor = colorseancor.hue();
 
         // Check if the reve thread is not already running and ensure dddaaa runs on L2

@@ -84,7 +84,7 @@ void autonomous(void) {
       bluer();
       break;
     default:
-      soloawp();
+      soloawpb();
       // test();
   }
 
