@@ -19,21 +19,39 @@ PIDControl::PIDControl(double kp, double ki, double kd, double MOE, int minReach
     this -> minReachedCall = minReachedCall;
     reachedCallCount = 0;
 }
+// void PIDControl::computeFromError(double error) {
+//     newError = error;
+//     bool isCrossZero = (newError >= 0 && prevError <= 0) || (newError <= 0 && prevError >= 0);
+//     if (isCrossZero) {
+//         sumError = 0;
+//     } else {
+//         sumError += newError;
+//     }
+//     if (prevError > 5e8) {
+//         deltaError = 0;
+//     } else {
+//         deltaError = newError - prevError;
+//     }
+//     prevError = newError;
+// }   
+
+// double PIDControl::lowPassFilter(double current, double previous, double alpha) {
+    // return alpha * current + (1 - alpha) * previous;
+// }
+
 void PIDControl::computeFromError(double error) {
+    // newError = lowPassFilter(error, prevError, 0.8); // Apply low-pass filter to error
     newError = error;
-    bool isCrossZero = (newError >= 0 && prevError <= 0) || (newError <= 0 && prevError >= 0);
-    if (isCrossZero) {
-        sumError = 0;
-    } else {
+
+    if (fabs(newError) > marginOfError) {
         sumError += newError;
+        sumError = fmax(-1000, fmin(1000, sumError));  // Clamp integral term
     }
-    if (prevError > 5e8) {
-        deltaError = 0;
-    } else {
-        deltaError = newError - prevError;
-    }
+
+    deltaError = (prevError > 5e8) ? 0 : newError - prevError;
     prevError = newError;
-}   
+}
+
 double PIDControl::getValue() {
     return kP*newError + kI*sumError + kD*deltaError;
 }

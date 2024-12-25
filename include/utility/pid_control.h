@@ -13,4 +13,5 @@ class PIDControl {
         double prevError;
         double marginOfError;
         int minReachedCall, reachedCallCount;
+        double lowPassFilter(double current, double previous, double alpha);
 };

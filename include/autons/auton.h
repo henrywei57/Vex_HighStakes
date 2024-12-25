@@ -9,3 +9,4 @@ void bluele();
 void redle();
 void soloawpr();
 void soloawpb();
+void skill();

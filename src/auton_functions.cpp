@@ -11,14 +11,19 @@ double heading_convert(double heading){
   /*twenRY Operator A = (condition) ? (true data) : (false data)*/
 }
 
-    double sped = 0.05;
+double lowPassFilter(double current, double previous, double alpha) {
+    return alpha * current + (1 - alpha) * previous;
+}
+
+
+    double sped = 0.055;
     void driveAndTurn(double tiles, double angle, double linearMaxVelocity, double turnMaxVelocity, double timeoutMs){
         double distanceDegree = tiles * (24.0 / 1.0) * (1.0 / (M_PI * 3.5 )) * (60.0 / 1.0) * (1.0 / 48.0) * (360.0 / 1.0);
         double initLeftMoterDegree = leftmo.position(degrees);
         double initRightMoterDegree = rightmo.position(degrees);
         // PIDControl drivePID(sped, 0, 0, 2);
-        PIDControl drivePID(sped, 0, 0, 5);
-        PIDControl rotateToPID(0.46, 0, 0, 2);
+        PIDControl drivePID(sped, 0, 0, 3);
+        PIDControl rotateToPID(0.4, 0, 0, 2);
         timer timeout;
         while(timeout.time(msec) <= timeoutMs && (!drivePID.reachedGoal() || !rotateToPID.reachedGoal())) {
             // Get linear velocity
@@ -50,8 +55,10 @@ double heading_convert(double heading){
         leftmo.stop();
         rightmo.stop();
     }
+    double turnSped = 0.4;
+    double marginOfErrorForTurning = 3;
     void turnToAngle(double angle, double MaxVelocity, double timeoutMs){
-        PIDControl rotateToPID(0.435, 0, 0, 2);
+        PIDControl rotateToPID(turnSped, 0, 0, 3);
         // PIDControl rotateToPID();
         timer timeout;
         while(timeout.time(msec) <= timeoutMs && !rotateToPID.reachedGoal()){

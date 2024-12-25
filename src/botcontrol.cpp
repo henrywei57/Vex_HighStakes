@@ -27,7 +27,8 @@ void reve() {
     SET_THREAD_RUNNING(true);  // Set flag to indicate the thread is active
     intas.spin(fwd, 30, pct);
     // wait(35,msec);
-    intas.spin(reverse, 100, pct);
+    inta2.spin(fwd, 100, pct);
+    inta1.spin(reverse, 100, pct);
     wait(750, msec);
     intas.stop(brake);  // Stop with brake after the reverse motion
     SET_THREAD_RUNNING(false);  // Reset flag after completion
@@ -60,7 +61,7 @@ void blueffffilter() {
     while (xxxx) {
         int hue = colorseancor.hue();  // Get current hue value
         if (hue > 80 && hue<300&&colorseancor.isNearObject()) {  // Check hue and object detection
-            wait(200, msec);  // Debounce delay
+            wait(170, msec);  // Debounce delay
             hehe = false;
             intas.stop(hold);  // Stop intake motor
             con.rumble("-");
@@ -90,8 +91,12 @@ void redffffilter() {
 
 void driver() {
     int county = 0;
-    // vex::thread asdddasdefeww(blueffffilter);  // Create the thread object for dddaaa
-    vex::thread asdsdasdas(redffffilter);  // Create the thread object for dddaaa
+    if(autonoption == 3||autonoption == 4){
+        vex::thread asdddasdefeww(redffffilter);  // Create the thread object for dddaaa
+    }else{
+        vex::thread asdsdasdas(blueffffilter);  // Create the thread object for dddaaa
+    }
+    // vex::thread asdsdasdas(redffffilter);  // Create the thread object for dddaaa
 
     while (1) { 
         int detectedColor = colorseancor.hue();
@@ -130,6 +135,7 @@ void driver() {
         double Scale = 12.0 / fmax(12.0, fmax(fabs(LeftVolt), fabs(RightVolt)));
         LeftVolt *= Scale;
         RightVolt *= Scale;
+
 
         if (fabs(LeftVolt) < 0.1) {
             leftmo.stop(brake);

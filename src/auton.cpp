@@ -59,21 +59,22 @@ bool doIWantItToGoToArm = false;
 void reves() {
     while(1){
     while (doIWantItToGoToArm) { // Only run while the flag is true
-        suk(100); // Run the intake motor
+        suk(90); // Run the intake motor
 
         // Check sensor distance and execute reverse logic
         if (aaasssddd.objectDistance(inches) < 1.3) {
-            intas.spin(fwd, 30, pct); // Run intake forward at 30% power
-            wait(60, msec);          // Wait for the action to complete
-                intas.spin(reverse, 100, pct);
-    wait(750, msec);
-    intas.stop(brake);    
+            inta1.setPosition(0,degrees);
+            inta1.spinToPosition(95,degrees);
+            inta2.spin(fwd,80,pct);
+            inta1.spin(reverse, 100, pct);
+            wait(775, msec);
+            inta1.stop(brake);    
             doIWantItToGoToArm = false;     // Stop the motor with brake mode
         }
 
-        wait(20, msec); // Small delay to prevent CPU overload
+        wait(10, msec); // Small delay to prevent CPU overload
     }
-    wait(20, msec); // Small delay to prevent CPU overload
+    wait(10, msec); // Small delay to prevent CPU overload
     }
 }
 
@@ -111,13 +112,13 @@ void redl(){
     sped = 0.05;
     turnToAngle(230,100);
     suk(100);
-    driveAndTurn(1.15,180, 80, 100);
+    driveAndTurn(1.15,180, 80, 100);    
     driveAndTurn(0.6,180, 100, 100);
-    turnToAngle(90,65,400);
+    turnToAngle(90,65);
     driveAndTurn(0.6,70, 100, 100);
+    turnToAngle(45);
     inta2.spin(reverse,100,pct);
-    turnToAngle(-5);
-    driveAndTurn(2,30, 100, 100);
+    driveAndTurn(4,0, 70, 100);
 
 }
 
@@ -143,8 +144,9 @@ void bluer(){
     driveAndTurn(0.6,-180, 100, 100);
     turnToAngle(-90,-65);
     driveAndTurn(0.6,-80, 100, 100);
-    turnToAngle(-5);
-    driveAndTurn(2,-30, 100, 100);
+    turnToAngle(-45);
+    inta2.spin(reverse,100,pct);
+    driveAndTurn(4,0, 70, 100);
 }
 
 void armbluel(){
@@ -200,7 +202,7 @@ void bluel(){
     sped = 0.05;
     clamp.set(0);
     setHeading(0);
-    driveAndTurn(1.8, -42, 100,100);
+    driveAndTurn(1.8, -42, 100,100,1350);
     vex::thread armThread(armbluel);
     driveAndTurn(-0.7, -100, 100,90,1000);
     armsmall.set(0);
@@ -208,21 +210,25 @@ void bluel(){
     suk(100);
     wait(550,msec);
     clamp.set(0);
-    turnToAngle(105);
+    turnToAngle(105,700);
     driveAndTurn(-1.13, 100, 80,100,950);
     clamp.set(1);
     suk(100);
-    turnToAngle(250);
-    driveAndTurn(0.45, 250, 100,100,700);
+    turnToAngle(250,500);
+    driveAndTurn(0.45, 250, 100,100,500);
     turnToAngle(190);
     armsmall.set(1);
     driveAndTurn(2.4, 170, 100,100);
-    turnToAngle(90);    
+    turnToAngle(90,800);  
+    sped = 1;
+    driveAndTurn(0.2, 90, 100,100,350);
+    driveAndTurn(-0.2, 90, 100,100,200);  
+    sped = 0.05;
     armsmall.set(0);
-    turnToAngle(185,800);
+    turnToAngle(190,800);
+    
     suk(100);
-    driveAndTurn(0.55, 200, 100,100,900);
-    driveAndTurn(-4, 270, 100,75);
+    driveAndTurn(1, 90, 50,100);
 }
 
 
@@ -251,21 +257,7 @@ void colorFilterTest(){
     }
 }
 
-void test(){
-    colorseancor.setLightPower(100,pct);
-clamp.set(1);
-suk(100);
-// Start the reves thread
-doIWantItToGoToArm = true;   
-vex::thread revesThread(colorFilterTest);
 
-// Wait for the reves task to complete based on your autonomous logic
-wait(150, msec);  // Allow time for the function to execute
-
-// Reset the flag externally after a delay or condition
-revesThread.join();  // Ensure the thread finishes cleanly
-
-}
 
 
 void bluele(){ //remember to change for redr
@@ -336,35 +328,36 @@ void asdasdasd(){
     }
 }
 
-void soloawpr(){
-    vex::thread iglhlggerhjfgwkuyg(bluefffffilter);
+
+void soloawpb(){
     sped = 0.05;
     clamp.set(0);
     setHeading(0);
     inta2.spin(fwd,20,pct);
     armbig.set(1);
-    driveAndTurn(0.853,90, 60, 20);
+    driveAndTurn(0.853,-90, 60, 20);
     armbig.set(0);
-    driveAndTurn(-0.1,90, 60, 20,500);
+    driveAndTurn(-0.1,-90, 60, 20,500);
     aaassdasd(300);
     sped = 0.07;
-    driveAndTurn(-2,45, 40, 60);
+    driveAndTurn(-2,-45, 40, 60);
     clamp.set(1);
     sped = 0.05;
-    turnToAngle(235,100,800);
+    turnToAngle(-240,100,800);
     suk(100);
-    driveAndTurn(1.15,180, 75, 100);
-    driveAndTurn(0.6,180, 100, 100);
-    turnToAngle(90,65,400);
+    driveAndTurn(1.15,-180, 75, 100);
+    driveAndTurn(0.6,-180, 100, 100);
+    turnToAngle(-90,65,400);
     clamp.set(0);
     inta1.stop();
-    driveAndTurn(0.6,90, 100, 100,500);
-    turnToAngle(135,100);
-    driveAndTurn(-2.3,175, 100, 80,1200);
-    driveAndTurn(-1.5,235, 100, 100,1000);
+    driveAndTurn(0.6,-90, 100, 100,500);
+    turnToAngle(-170,100);
+    driveAndTurn(-2.3,-170, 100, 80,1200);
+    driveAndTurn(-1.5,-235, 100, 100,1000);
     suk(100);
     clamp.set(1);
-    turnToAngle(270);
+    turnToAngle(-270);
+    armbig.set(1);
     // armsmall.set(1);
     // turnToAngle(180);
     
@@ -372,7 +365,8 @@ void soloawpr(){
 
 
 
-void soloawpb(){
+
+void soloawpr(){
     sped = 0.05;
     clamp.set(0);
     setHeading(0);
@@ -404,4 +398,125 @@ void soloawpb(){
     // armsmall.set(1);
     // turnToAngle(180);
     
+}
+
+
+
+// void skill(){
+//     vex::thread asdasdouuh(reves);
+//     sped = 0.05;
+//     clamp.set(0);
+//     setHeading(0);
+//     inta1.spin(fwd,100,pct);
+//     vex::wait(200,msec);
+//     driveAndTurn(0.4,100,75,100);
+//     driveAndTurn(-1.2,100,100,100);
+//     clamp.set(1);
+//     suk(100);
+//     turnToAngle(-5);
+//     driveAndTurn(1,0,100,100);
+//     turnToAngle(45);
+//     inta1.stop();
+//     driveAndTurn(1.6,45,100,100);
+//     suk(100);
+//     turnToAngle(-45);
+//     inta1.stop();
+//     driveAndTurn(1.65,-45,100,100);
+//     suk(100);
+//     turnToAngle(-90);
+//     intas.stop();
+//     doIWantItToGoToArm = true;
+//     driveAndTurn(0.9,-90,100,100);
+//     turnToAngle(-180);
+//     driveAndTurn(1,-180,100,100);
+//     armbig.set(1);
+//     turnToAngle(-90);
+//     driveAndTurn(1.19,-90,100,100);
+//     doIWantItToGoToArm = false;
+//     armbig.set(0);
+//     wait(150,msec);
+//     driveAndTurn(-0.9,-90,100,100);
+//     intas.stop();
+//     doIWantItToGoToArm = true;
+//     wait(1000,msec);
+//     armbig.set(1);
+//     driveAndTurn(0.95,-87.5,100,100);
+//     doIWantItToGoToArm = false;
+//     armbig.set(0);
+//     wait(100,msec);
+//     driveAndTurn(-0.5,-90,10,100);
+//     turnToAngle(-15);
+//     suk(100);
+//     driveAndTurn(2,0,100,100);
+// }
+void skill(){
+    vex::thread asdasdouuh(reves);
+    sped = 0.05;
+    clamp.set(0);
+    setHeading(0);
+    inta1.spin(fwd,100,pct);
+    vex::wait(200,msec);
+    driveAndTurn(0.4,100,75,100,650);
+    driveAndTurn(-1.2,100,100,100);
+    clamp.set(1);
+    suk(100);
+    turnToAngle(-5,400);
+    driveAndTurn(1,0,100,100);
+    turnToAngle(-30,100,800);
+    intas.stop(brake);
+    doIWantItToGoToArm = true;
+    driveAndTurn(2.5,0,100,100);
+    turnToAngle(-190);
+    armbig.set(1);
+    driveAndTurn(0.8725,-190,100,100);
+    turnToAngle(-90);
+    doIWantItToGoToArm = false;
+    driveAndTurn(1,-90,100,100);
+    armbig.set(0);
+    wait(200,msec);
+    driveAndTurn(-0.5,-90,100,100);
+    turnToAngle(-180,100,800);
+    suk(100);
+    driveAndTurn(2.7,-180,80,100);
+    turnToAngle(-45,70,800);
+    driveAndTurn(0.8,-45,100,100);
+    driveAndTurn(-0.7,45,50,100);
+    clamp.set(0);
+    driveAndTurn(0.5,25,100,100);
+    marginOfErrorForTurning = 0.5;
+    turnToAngle(-90);
+    turnToAngle(-90);
+    marginOfErrorForTurning = 3;
+    driveAndTurn(-3.4,-90,100,100,3000);
+    clamp.set(1);
+
+
+    turnToAngle(5,400);
+    driveAndTurn(1,-0,100,100);
+    turnToAngle(30,100,800);
+    intas.stop(brake);
+    doIWantItToGoToArm = true;
+    driveAndTurn(2.5,-0,100,100);
+    turnToAngle(190);
+    armbig.set(1);
+    driveAndTurn(0.8,190,100,100);
+    turnToAngle(90);
+    doIWantItToGoToArm = false;
+    driveAndTurn(1,90,100,100);
+    armbig.set(0);
+    wait(200,msec);
+    driveAndTurn(-0.5,90,100,100);
+    turnToAngle(180,100,800);
+    suk(100);
+    driveAndTurn(2.7,180,80,100);
+    turnToAngle(45,75,800);
+    // driveAndTurn(0.7,45,100,100);
+    // turnToAngle(60);
+    // driveAndTurn(-0.7,-45,50,100);
+    // clamp.set(0);
+
+}
+void test(){
+    vex::thread asdasdouuh(reves);
+    doIWantItToGoToArm = true;
 }

@@ -83,12 +83,12 @@ void autonomous(void) {
     case 4:
       bluer();
       break;
-    default:
-      soloawpb();
+    default:;
+      // soloawpb();
       // test();
   }
+  skill();
 
-  // test();
   // bluer();
   // redl();                                                                                                                                                                             
       // bluele();
