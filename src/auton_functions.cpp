@@ -3,17 +3,9 @@
 #include "robot-config.h"
 #include "main.h"
 #include "iostream"
+#include  "botcontrol.h"
 double newTurnVelocity;
 namespace auton {
-
-double heading_convert(double heading){
-  return(heading > 180) ? heading - 360 : heading;
-  /*twenRY Operator A = (condition) ? (true data) : (false data)*/
-}
-
-double lowPassFilter(double current, double previous, double alpha) {
-    return alpha * current + (1 - alpha) * previous;
-}
 
 
     double sped = 0.055;
@@ -36,7 +28,6 @@ double lowPassFilter(double current, double previous, double alpha) {
             drivePID.computeFromError(error);
             double newLinearVelocity = drivePID.getValue();
             newLinearVelocity = fmax(-linearMaxVelocity, fmin(linearMaxVelocity, newLinearVelocity));
-
             // Get turning velocity
                 double rotateError = angle - bob.rotation(deg);
                 rotateToPID.computeFromError(rotateError);
@@ -55,6 +46,7 @@ double lowPassFilter(double current, double previous, double alpha) {
         leftmo.stop();
         rightmo.stop();
     }
+
     double turnSped = 0.4;
     double marginOfErrorForTurning = 3;
     void turnToAngle(double angle, double MaxVelocity, double timeoutMs){
@@ -77,16 +69,24 @@ double lowPassFilter(double current, double previous, double alpha) {
         double scale = 100.0 / fmax(100.0, fmax(fabs(leftPct), fabs(rightPct)));
         leftPct *= scale;
         rightPct *= scale;
-        leftmo.spin(fwd, leftPct, pct);
-        rightmo.spin(fwd, rightPct, pct);
+        leftmo.spin(fwd, to_volt(leftPct), volt);
+        rightmo.spin(fwd, to_volt(rightPct), volt);
     }
+
+
     void setHeading(int degree){
         bob.setHeading(degree, degrees);
     }
+
+
     void suk(int speed){
         intas.spin(fwd, speed, pct);
     }
+
+
     void unsuk(int speed){
         intas.spin(reverse, speed, pct);
     }
+
+
 }

@@ -46,12 +46,7 @@ int endX = originX + width;
 bool autonSelector = true;
 
 bool taboption = 1;
-    float deadband(float input, float width){
-  if (fabs(input)<width){
-    return(0);
-  }
-  return(input);
-}
+
 void pre_auton(void) {
   board();
   vexcodeInit();

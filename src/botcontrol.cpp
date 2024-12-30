@@ -87,6 +87,17 @@ void redffffilter() {
     }
 }
 
+float deadband(float input, float width){
+  if (std::fabs(input)<width){
+    return(0);
+  }
+  return(input);
+}
+
+float to_volt(float percent){
+  return(percent*12.0/100.0);
+}
+
 void arcadeDrive(){
   float throttle = deadband(con.Axis3.value(), 5);
   float turn = deadband(con.Axis1.value(), 5);

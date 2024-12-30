@@ -1,3 +1,7 @@
-// #pragma once;
+// include/botcontrol.h
+   #pragma once
 
-void driver();
+   void driver();
+
+   float to_volt(float percent);
+   float deadband(float input, float width);
