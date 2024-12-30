@@ -87,6 +87,12 @@ void redffffilter() {
     }
 }
 
+void arcadeDrive(){
+  float throttle = deadband(con.Axis3.value(), 5);
+  float turn = deadband(con.Axis1.value(), 5);
+  leftmo.spin(fwd, to_volt(throttle+turn), volt);
+  rightmo.spin(fwd, to_volt(throttle-turn), volt);
+}
 
 
 void driver() {
@@ -126,28 +132,7 @@ void driver() {
         }
 
         // Driving control based on joystick positions
-        double Axis3 = -con.Axis3.position(pct);
-        double Axis1 = con.Axis1.position(pct);
-
-        double LeftVolt = Axis1 + Axis3;
-        double RightVolt = Axis3 - Axis1;
-
-        double Scale = 12.0 / fmax(12.0, fmax(fabs(LeftVolt), fabs(RightVolt)));
-        LeftVolt *= Scale;
-        RightVolt *= Scale;
-
-
-        if (fabs(LeftVolt) < 0.1) {
-            leftmo.stop(brake);
-        } else {
-            leftmo.spin(forward, LeftVolt, volt);
-        }
-
-        if (fabs(RightVolt) < 0.1) {
-            rightmo.stop(brake);
-        } else {
-            rightmo.spin(forward, RightVolt, volt);
-        }
+        arcadeDrive();
 
         wait(10, msec);
     }
