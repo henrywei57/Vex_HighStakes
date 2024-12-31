@@ -18,12 +18,12 @@ void getHue(){
 
 void filterRed() {
     while (true) {
-        int hue = colorseancor.hue();  // Get current hue value
-        if (hue > 80 && colorseancor.isNearObject()) {  // Check hue and object detection
-            wait(200, msec);  // Debounce delay
-            intas.stop(hold);  // Stop intake motor
-            wait(100, msec);  // Hold for 1 second
+        int hue = colorseancor.hue();  
+        if (hue > 80 && colorseancor.isNearObject()) {  
+            wait(200, msec);  
+            intas.stop(hold);  
+            wait(100, msec);  
         }
-        wait(10, msec);  // Reduce CPU usage
+        wait(10, msec);  
     }
 }
