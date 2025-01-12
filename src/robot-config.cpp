@@ -45,6 +45,12 @@ distance aaasssddd = distance(PORT16);
 
 
 optical colorseancor = optical(PORT20);
+//color sensor
+
+encoder hor = encoder(Brain.ThreeWirePort.D);
+encoder ver = encoder(Brain.ThreeWirePort.E);
+//encoder
+
 
 // VEXcode generated  
 

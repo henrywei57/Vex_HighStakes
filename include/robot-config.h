@@ -29,6 +29,9 @@ extern distance dst;
 extern distance aaasssddd;
 extern motor arm;
 extern optical colorseancor;
+extern encoder hor;
+extern encoder ver;
+
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
