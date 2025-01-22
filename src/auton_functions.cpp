@@ -65,6 +65,24 @@ namespace auton {
         leftmo.stop();
         rightmo.stop();
     }
+
+    void swing(double angle, double MaxVelocity, double timeoutMs){
+        PIDControl rotateToPID(turnSped, 0, 0, 3);
+        
+        timer timeout;
+        while(timeout.time(msec) <= timeoutMs && !rotateToPID.reachedGoal()){
+            double error = angle - bob.rotation(degrees);
+            rotateToPID.computeFromError(error);
+            double newTurnVelocity = rotateToPID.getValue(); 
+            driveVelocity(newTurnVelocity, -newTurnVelocity); 
+            printf("error%3f\n",error); 
+            task::sleep(20); 
+
+        }
+        leftmo.stop();
+        rightmo.stop();
+    }
+
     void driveVelocity(double leftPct, double rightPct){
         double scale = 100.0 / fmax(100.0, fmax(fabs(leftPct), fabs(rightPct)));
         leftPct *= scale;

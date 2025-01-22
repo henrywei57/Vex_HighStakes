@@ -84,19 +84,7 @@ void bluel(){}
 void skill(){}
 
 void test(){
-    driveAndTurn(1,0,100,100);
-    wait(1,sec);
-    driveAndTurn(-1,0,100,100);
-    wait(1,sec);
-    turnToAngle(90);
-    wait(1,sec);
-    turnToAngle(270);
-    wait(1,sec);
-    turnToAngle(180);
-    wait(1,sec);
-    turnToAngle(360);
-    wait(1,sec);
-    driveAndTurn(-1,90,100,100);
-    wait(1,sec);
-    driveAndTurn(1,0,100,100);
+    leftmo.spin(fwd,12,volt);
+    rightmo.spin(fwd,12,volt);
+
 }

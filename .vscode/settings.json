@@ -51,7 +51,5 @@
 		"system_error": "cpp",
 		"cinttypes": "cpp",
 		"regex": "cpp",
-		"v5lvgl.h": "c",
-		"lvgl.h": "c"
 	}
 }
