@@ -6,53 +6,66 @@
 
 using namespace vex;
 
-namespace odom{
+double localX = 0;
+double localY = 0;
 
-  double xPos;
-  double yPos;
-  
-  double angle = 0;
+double botAngle = 0;
 
-  double currHor = 0;
-  double prevHor = 0;
-  double deltaHor = 0;
+double globalX = 0;
+double globalY = 0;
 
-  double DegToInch(double wheelDiameter, double deg){
-    double wheelCir = M_PI * wheelDiameter;
-    return wheelCir*(deg/360);
-  }
+double wheelDiameter = 4.0; //inch
 
-  int configSensor(){
-    hor.setRotation(0,degrees);
-    ver.setRotation(0,degrees);
+double prevXEncoderPos = degToInch(xEncoder.rotation(deg));//now it caculates the degree of the motor to the distance traveled fix it i need it to get the different in angle 
+double prevYEncoderPos = degToInch(yEncoder.rotation(deg) );
+
+double currentXEncoderPos = 0;
+double currentYEncoderPos = 0;
+
+double r = 0;
+double theta = 0;
+
+double degToInch(double degrees){
+
+    double wheelCircumference = M_PI * wheelDiameter;
+    double distancePerDegree = wheelCircumference / 360.0;
+
+    return  degrees * distancePerDegree;
+
+}
+
+void resetSensors(){
+
+    xEncoder.setRotation(0,deg);
+    yEncoder.setRotation(0,deg);
+
     calibob();
-    angle = bob.rotation(deg);
-    xPos = 0;
-    yPos = 0;
-    return 1;
-  }
 
+    globalX = 0;
+    globalY = 0;
+    prevXEncoderPos = 0;
+    prevYEncoderPos = 0;
 
-  void updatePos(){
-    prevHor = hor.rotation(deg);
+}
 
-    while (1) {
-        currHor = hor.rotation(deg);
-        deltaHor = currHor - prevHor;
-        prevHor = currHor;
+void updatePos(){
 
-        double lengthTraveled = DegToInch(3.25, deltaHor);
-        double angleRad = angle * (M_PI / 180.0);
+    currentXEncoderPos = degToInch(xEncoder.rotation(deg));
+    currentYEncoderPos = degToInch(yEncoder.rotation(deg));
 
-        xPos += lengthTraveled * cos(angleRad);
-        yPos += lengthTraveled * sin(angleRad);
+    localX = prevXEncoderPos - currentXEncoderPos;
+    localY = prevYEncoderPos - currentYEncoderPos;
 
-        angle = bob.rotation(deg);
-        wait(10, msec);
-    }
+    r = std::sqrt(localX * localX + localY * localY);
+    theta = std::atan2(localX, localY);
 
-  }
+    theta += bob.rotation(deg) * (M_PI / 180.0);
 
+    globalX = r * std::cos(theta);
+    globalY = r * std::sin(theta);
 
+    prevXEncoderPos = currentXEncoderPos;
+    prevYEncoderPos = currentYEncoderPos;
 
+    wait(5,msec);
 }
