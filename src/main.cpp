@@ -20,6 +20,8 @@ competition Competition;
 bool autonSelector = true;
 
 
+
+
 void pre_auton(void) {
   board();
   bob.startCalibration();
@@ -44,7 +46,8 @@ void autonomous(void) {
       bluer();
       break;
     default:
-      skill();
+      test();
+    
   }
 }
 
@@ -68,6 +71,8 @@ void usercontrol(void) {
 
 
 
+
+
 int main() {
   autonSelectorImg();
     colorseancor.setLightPower(100,pct);
@@ -80,5 +85,10 @@ int main() {
   }
   
 
+    while(1) {
+        //Brain.Screen.printAt( 10, 50, "Hello V5 %d", count++ );
+        // Allow other tasks to run
+        this_thread::sleep_for(10);
+    }
 
 } 

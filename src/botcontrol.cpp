@@ -100,9 +100,9 @@ float to_volt(float percent){
 
 void arcadeDrive(){
   float throttle = deadband(con.Axis3.value(), 5);
-  float turn = deadband(con.Axis1.value(), 5);
-  leftmo.spin(fwd, to_volt(throttle+turn), volt);
-  rightmo.spin(fwd, to_volt(throttle-turn), volt);
+  float turn = -deadband(con.Axis1.value(), 5);
+  leftmo.spin(fwd, throttle+turn, pct);
+  rightmo.spin(fwd, throttle-turn, pct);
 }
 
 

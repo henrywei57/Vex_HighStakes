@@ -29,8 +29,8 @@ extern distance dst;
 extern distance aaasssddd;
 extern motor arm;
 extern optical colorseancor;
-extern encoder hor;
-extern encoder ver;
+extern encoder xEncoder;
+extern encoder yEncoder;
 
 
 /**
