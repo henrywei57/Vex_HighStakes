@@ -1,39 +1,31 @@
-#ifndef ODOMETRY_H // Include guard to prevent multiple inclusions
+#ifndef ODOMETRY_H
 #define ODOMETRY_H
 
-#include "vex.h" 
+#include "vex.h"
 #include <cmath>
-#include <iostream>
 
 class Odometry {
 private:
-    double globalX;          // Global X position
-    double globalY;          // Global Y position
-    double prevXRotation;    // Previous X encoder rotation
-    double prevYRotation;    // Previous Y encoder rotation
-    double wheelDiameter;    // Diameter of the wheels
-    const double PI = M_PI;  // Constant for PI
-    const double FULL_CIRCLE_DEG = 360.0; // Constant for full circle in degrees
+    double globalX, globalY;
+    double prevXRotation, prevYRotation;
+    double wheelDiameter;
 
-public:
-    // Constructor
-    Odometry(double diameter);
-
-    // Convert encoder degrees to inches
+    // Helper function to convert degrees to inches based on wheel diameter
     double degToInch(double degrees);
 
-    // Reset sensors and odometry
+public:
+    // Constructor to initialize the odometry system with the wheel diameter
+    Odometry(double diameter);
+
+    // Function to reset sensors and global position
     void resetSensors();
 
-    // Handle encoder wrapping
-    double handleEncoderWrapping(double currentRotation, double prevRotation);
-
-    // Update robot position and orientation
+    // Function to update the robot's global position
     void updatePos();
 
-    // Getter functions
-    double getGlobalX();
-    double getGlobalY();
+    // Getter functions for global position
+    double getGlobalX() const { return globalX; }
+    double getGlobalY() const { return globalY; }
 };
 
 #endif // ODOMETRY_H

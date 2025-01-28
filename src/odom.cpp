@@ -1,76 +1,71 @@
+#include "odometry/odom.h"
+#include "robot-config.h" // Assuming xEncoder, yEncoder, and bob are declared here
 #include "vex.h"
-#include "odometry\odom.h"
-#include "robot-config.h"
-#include "cmath"
 #include "other_function.h"
-#include "autons/auton_functions.h"
-#include "utility/pid_control.h"
-#include "robot-config.h"
-#include "main.h"
-#include "iostream"
-#include  "botcontrol.h"
+#include "cmath"
+#include <vex_task.h>
 
 using namespace vex;
+using namespace std;
 
-class Odometry{
 
-private:
-    double globalX, globalY;
-    double prevXRotation, prevYRotation;
-    double wheelDiameter;
 
-public:
+// Constructor: Initialize the Odometry object
+Odometry::Odometry(double diameter) 
+    : wheelDiameter(diameter), globalX(0), globalY(0), prevXRotation(0), prevYRotation(0) {}
 
-    Odometry(double diameter) : wheelDiameter(diameter), globalX(0), globalY(0), prevXRotation(0), prevYRotation(0) {}
+// Convert degrees of encoder rotation to inches
+double Odometry::degToInch(double degrees) {
+    double wheelCircumference = M_PI * wheelDiameter;
+    double distancePerDegree = wheelCircumference / 360.0;
+    return degrees * distancePerDegree;
+}
 
-    double degToInch(double degrees){
+// Reset sensors and position
+void Odometry::resetSensors() {
+    xEncoder.setRotation(0, deg);
+    yEncoder.setRotation(0, deg);
 
-        double wheelCircumference = M_PI * wheelDiameter;
-        double distancePerDegree = wheelCircumference / 360.0;
+    // Assuming calibob() resets the bot's rotation
+    calibob();
 
-        return  degrees * distancePerDegree;
+    globalX = 0;
+    globalY = 0;
+    prevXRotation = 0;
+    prevYRotation = 0;
+}
 
-    }
+// Update the robot's global position
+void Odometry::updatePos() {
+    // Get current encoder rotations
+    double currentXRotation = xEncoder.rotation(deg);
+    double currentYRotation = yEncoder.rotation(deg);
 
-    void resetSensors(){
+    // Calculate change in encoder rotations
+    double deltaXRotation = std::fmod(currentXRotation - prevXRotation + 360.0, 360.0);
+    if (deltaXRotation > 180.0) deltaXRotation -= 360.0;
 
-        xEncoder.setRotation(0,deg);
-        yEncoder.setRotation(0,deg);
+    double deltaYRotation = std::fmod(currentYRotation - prevYRotation + 360.0, 360.0);
+    if (deltaYRotation > 180.0) deltaYRotation -= 360.0;
 
-        calibob();
+    // Convert changes to local distances
+    double localX = degToInch(deltaXRotation);
+    double localY = degToInch(deltaYRotation);
 
-        globalX = 0;
-        globalY = 0;
-        prevXRotation = 0;
-        prevYRotation = 0;
+    // Get the robot's current angle in radians
+    double botAngle = bob.rotation(deg) * (M_PI / 180.0);
 
-    }
+    // Calculate displacement in global coordinates
+    double displacementMagnitude = std::sqrt(localX * localX + localY * localY);
+    double displacementAngle = std::atan2(localY, localX) + botAngle;
 
-    void updatePos() {
-        double currentXRotation = xEncoder.rotation(deg);
-        double currentYRotation = yEncoder.rotation(deg);
+    globalX += displacementMagnitude * cos(displacementAngle);
+    globalY += displacementMagnitude * sin(displacementAngle);
 
-        double deltaXRotation = fmod(currentXRotation - prevXRotation + 360.0, 360.0);
-        if (deltaXRotation > 180.0) deltaXRotation -= 360.0;
+    // Update previous encoder values
+    prevXRotation = currentXRotation;
+    prevYRotation = currentYRotation;
 
-        double deltaYRotation = fmod(currentYRotation - prevYRotation + 360.0, 360.0);
-        if (deltaYRotation > 180.0) deltaYRotation -= 360.0;
-
-        double localX = degToInch(deltaXRotation);
-        double localY = degToInch(deltaYRotation);
-
-        double botAngle = bob.rotation(deg) * (M_PI / 180.0);
-
-        double displacementMagnitude = std::sqrt(localX * localX + localY * localY);
-        double displacementAngle = std::atan2(localY, localX) + botAngle;
-
-        globalX += displacementMagnitude * std::cos(displacementAngle);
-        globalY += displacementMagnitude * std::sin(displacementAngle);
-
-        prevXRotation = currentXRotation;
-        prevYRotation = currentYRotation;
-
-        wait(5, msec);
-    }
-
-};
+    // Small delay to allow sensors to update
+    wait(5,msec);
+}

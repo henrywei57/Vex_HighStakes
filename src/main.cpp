@@ -110,13 +110,7 @@ void usercontrol(void) {
 
 
 
-
-
-
-
-
 int main() {
-  autonSelectorImg();
     colorseancor.setLightPower(100,pct);
     
   Competition.autonomous(autonomous);
