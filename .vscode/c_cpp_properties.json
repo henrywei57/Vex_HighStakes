@@ -6,7 +6,7 @@
 		"vex_sdkIncludes": [
 			"${vex_sdkPath}/clang/8.0.0/include/**",
 			"${vex_gcc}/**",
-			"${vex_gcc}/arm-none-eabi/thumb",
+			"${vex_gcc}/arm-none-eabi/armv7-arm/thumb",
 			"${vex_sdkPath}/gcc/include",
 			"${vex_sdkPath}/include/**",
 			"${workspaceFolder}/include/**",
@@ -17,8 +17,7 @@
 		{
 			"name": "Win32",
 			"includePath": [
-				"${vex_sdkIncludes}",
-				"${workspaceFolder}"
+				"${vex_sdkIncludes}"
 			],
 			"compilerPath": "${vex_compilerPath}",
 			"cStandard": "gnu99",

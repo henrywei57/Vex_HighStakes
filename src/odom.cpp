@@ -1,71 +1,76 @@
 #include "vex.h"
-#include "odom.h"
+#include "odometry\odom.h"
 #include "robot-config.h"
 #include "cmath"
 #include "other_function.h"
+#include "autons/auton_functions.h"
+#include "utility/pid_control.h"
+#include "robot-config.h"
+#include "main.h"
+#include "iostream"
+#include  "botcontrol.h"
 
 using namespace vex;
 
-double localX = 0;
-double localY = 0;
+class Odometry{
 
-double botAngle = 0;
+private:
+    double globalX, globalY;
+    double prevXRotation, prevYRotation;
+    double wheelDiameter;
 
-double globalX = 0;
-double globalY = 0;
+public:
 
-double wheelDiameter = 4.0; //inch
+    Odometry(double diameter) : wheelDiameter(diameter), globalX(0), globalY(0), prevXRotation(0), prevYRotation(0) {}
 
-double prevXEncoderPos = degToInch(xEncoder.rotation(deg));//now it caculates the degree of the motor to the distance traveled fix it i need it to get the different in angle 
-double prevYEncoderPos = degToInch(yEncoder.rotation(deg) );
+    double degToInch(double degrees){
 
-double currentXEncoderPos = 0;
-double currentYEncoderPos = 0;
+        double wheelCircumference = M_PI * wheelDiameter;
+        double distancePerDegree = wheelCircumference / 360.0;
 
-double r = 0;
-double theta = 0;
+        return  degrees * distancePerDegree;
 
-double degToInch(double degrees){
+    }
 
-    double wheelCircumference = M_PI * wheelDiameter;
-    double distancePerDegree = wheelCircumference / 360.0;
+    void resetSensors(){
 
-    return  degrees * distancePerDegree;
+        xEncoder.setRotation(0,deg);
+        yEncoder.setRotation(0,deg);
 
-}
+        calibob();
 
-void resetSensors(){
+        globalX = 0;
+        globalY = 0;
+        prevXRotation = 0;
+        prevYRotation = 0;
 
-    xEncoder.setRotation(0,deg);
-    yEncoder.setRotation(0,deg);
+    }
 
-    calibob();
+    void updatePos() {
+        double currentXRotation = xEncoder.rotation(deg);
+        double currentYRotation = yEncoder.rotation(deg);
 
-    globalX = 0;
-    globalY = 0;
-    prevXEncoderPos = 0;
-    prevYEncoderPos = 0;
+        double deltaXRotation = fmod(currentXRotation - prevXRotation + 360.0, 360.0);
+        if (deltaXRotation > 180.0) deltaXRotation -= 360.0;
 
-}
+        double deltaYRotation = fmod(currentYRotation - prevYRotation + 360.0, 360.0);
+        if (deltaYRotation > 180.0) deltaYRotation -= 360.0;
 
-void updatePos(){
+        double localX = degToInch(deltaXRotation);
+        double localY = degToInch(deltaYRotation);
 
-    currentXEncoderPos = degToInch(xEncoder.rotation(deg));
-    currentYEncoderPos = degToInch(yEncoder.rotation(deg));
+        double botAngle = bob.rotation(deg) * (M_PI / 180.0);
 
-    localX = prevXEncoderPos - currentXEncoderPos;
-    localY = prevYEncoderPos - currentYEncoderPos;
+        double displacementMagnitude = std::sqrt(localX * localX + localY * localY);
+        double displacementAngle = std::atan2(localY, localX) + botAngle;
 
-    r = std::sqrt(localX * localX + localY * localY);
-    theta = std::atan2(localX, localY);
+        globalX += displacementMagnitude * std::cos(displacementAngle);
+        globalY += displacementMagnitude * std::sin(displacementAngle);
 
-    theta += bob.rotation(deg) * (M_PI / 180.0);
+        prevXRotation = currentXRotation;
+        prevYRotation = currentYRotation;
 
-    globalX = r * std::cos(theta);
-    globalY = r * std::sin(theta);
+        wait(5, msec);
+    }
 
-    prevXEncoderPos = currentXEncoderPos;
-    prevYEncoderPos = currentYEncoderPos;
-
-    wait(5,msec);
-}
+};

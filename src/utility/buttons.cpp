@@ -7,127 +7,74 @@ using namespace vex;
 
 int autonoption = 0;
 
-void drawGrid() {
-    // Draw the initial grid lines
-    Brain.Screen.clearScreen();
-    Brain.Screen.setPenColor(white); // Set pen color to white for text
-    Brain.Screen.setFillColor(black); // Set fill color to black for non-highlighted blocks
-    Brain.Screen.drawLine(0, 135, 480, 135);
-    Brain.Screen.drawLine(240, 30, 240, 240);
-    Brain.Screen.drawLine(0, 30, 480, 30);
-    Brain.Screen.drawLine(240, 30, 240, 0);
+#include "vex.h"
 
-    // Display labels in each grid section with white text on a black background
-    Brain.Screen.printAt(315, 95, "Red Left");
-    Brain.Screen.printAt(85, 95, "Red Right");  
-    Brain.Screen.printAt(80, 195, "Blue Left");  
-    Brain.Screen.printAt(310, 195, "Blue Right");  
-}
+using namespace vex;
 
-void highlightBlock(int x, int y, bool highlight) {
-    // Set the fill color based on whether to highlight or not
-    Brain.Screen.setFillColor(highlight ? green : black); // Green for highlight, black otherwise
-    Brain.Screen.setPenColor(white); // Always set text color to white for visibility
+class TouchButton {
+private:
+    int x, y, width, height; // Button position and size
+    const char* label;       // Button label
+    bool pressed;            // Button pressed state
 
-    if (y <= 120 && x >= 240) {
-        // Close Elim block
-        Brain.Screen.drawRectangle(240, 30, 240, 105);
-        Brain.Screen.printAt(315, 95, "Red Left");
-    } else if (y <= 120 && x <= 240) {
-        // Far Elim block
-        Brain.Screen.drawRectangle(0, 30, 240, 105);
-        Brain.Screen.printAt(85, 95, "Red Right");
-    } else if (y >= 120 && x <= 240) {
-        // Far Qua block
-        Brain.Screen.drawRectangle(0, 135, 240, 105);
-        Brain.Screen.printAt(80, 195, "Blue Left");
-    } else if (y >= 120 && x >= 240) {
-        // Close Qua block
-        Brain.Screen.drawRectangle(240, 135, 240, 105);
-        Brain.Screen.printAt(310, 195, "Blue Right");
+public:
+    // Constructor
+    TouchButton(int xPos, int yPos, int w, int h, const char* btnLabel)
+        : x(xPos), y(yPos), width(w), height(h), label(btnLabel), pressed(false) {}
+
+    // Draw the button on the screen
+    void draw() {
+        Brain.Screen.setPenColor(white);
+        Brain.Screen.setFillColor(pressed ? green : black); // Change color when pressed
+        Brain.Screen.drawRectangle(x, y, width, height);
+        Brain.Screen.printAt(x + 10, y + height / 2 + 5, label); // Display label
     }
-}
 
-void board() {
-    autonSelectorImg(); // Display the initial autonomous selector image
+    // Check if the button is pressed
+    bool isPressed() {
+        if (Brain.Screen.pressing()) {
+            int touchX = Brain.Screen.xPosition();
+            int touchY = Brain.Screen.yPosition();
+
+            // Check if touch is within the button's bounds
+            if (touchX >= x && touchX <= x + width && touchY >= y && touchY <= y + height) {
+                pressed = true;
+                return true;
+            }
+        } else {
+            pressed = false;
+        }
+        return false;
+    }
+};
+
+int main() {
+    // Initialize the V5 Brain
+    vex::brain Brain;
+
+    // Create buttons
+    TouchButton button1(50, 50, 100, 60, "Button 1");
+    TouchButton button2(200, 50, 100, 60, "Button 2");
 
     while (true) {
-        if (Brain.Screen.pressing()&&autonSelector) {
-            int X = Brain.Screen.xPosition();
-            int Y = Brain.Screen.yPosition();
+        // Clear the screen
+        Brain.Screen.clearScreen();
 
-            // Check which block is selected
-            if ((Y <= 120) && (X >= 240)) {
-                if (autonoption != 1) { // Only update if the option changes
-                    autonoption = 2;
-                    autonSelectorRedR(); // Change the image for this option
-                }
-            } else if ((Y <= 120) && (X < 240)) {
-                if (autonoption != 2) {
-                    autonoption = 1;
-                    autonSelectorRedL();
-                }
-            } else if ((Y > 120) && (X < 240)) {
-                if (autonoption != 3) {
-                    autonoption = 3;
-                    autonSelectorBlueL();
-                }
-            } else if ((Y > 120) && (X >= 240)) {
-                if (autonoption != 4) {
-                    autonoption = 4;
-                    autonSelectorBlueR();
-                }
-            }
+        // Draw buttons
+        button1.draw();
+        button2.draw();
+
+        // Check if buttons are pressed
+        if (button1.isPressed()) {
+            Brain.Screen.setCursor(10, 1);
+            Brain.Screen.print("Button 1 Pressed!");
+        }
+        if (button2.isPressed()) {
+            Brain.Screen.setCursor(10, 1);
+            Brain.Screen.print("Button 2 Pressed!");
         }
 
-        wait(20, msec); // Add a slight delay to prevent CPU overuse
+        // Small delay to avoid screen flickering
+        wait(20, msec);
     }
 }
-
-//       Brain.Screen.drawLine(100,100,100,200);
-//       Brain.Screen.drawLine(150,100,150,200);
-//       for (int angle = 0; angle <= 180; angle++) {
-//         int x = 125 + 25 * cos(angle * M_PI / 180);
-//         int y = 100 - 25 * sin(angle * M_PI / 180);
-//         Brain.Screen.drawPixel(x, y);
-//       }
-//       for (int angle = 0; angle <= 180; angle++) {
-//         int x = 175 + 25 * cos(angle * M_PI / 180);
-//         int y = 200 - 25 * sin(angle * M_PI / 180);
-//         Brain.Screen.drawPixel(x, y);
-//       }
-//       double angle_rad = -80 * M_PI / 180; // Convert the rotation angle to radians
-
-//       for (int angle = 0; angle <= 180; angle++) {
-//         double x = 25 * cos(angle* M_PI / 180);
-//         double y = 25 * sin(angle* M_PI / 180);
-
-//         // Rotate the point by the rotation angle
-//         int x_rotated = 175 + x * cos(angle_rad) - y * sin(angle_rad);
-//         int y_rotated = 200 + x * sin(angle_rad) + y * cos(angle_rad);
-
-//         Brain.Screen.drawPixel(x_rotated, y_rotated);
-
-
-//       for (int angle = 0; angle <= 180; angle++) {
-//         int x = 75 + 25 * cos(angle * M_PI / 180);
-//         int y = 200 - 25 * sin(angle * M_PI / 180);
-//         Brain.Screen.drawPixel(x, y);
-//       }
-//       double angle_rad = 80 * M_PI / 180; // Convert the rotation angle to radians
-
-//       for (int angle = 0; angle <= 180; angle++) {
-//         double x = 25 * cos(angle* M_PI / 180);
-//         double y = 25 * sin(angle* M_PI / 180);
-
-//         // Rotate the point by the rotation angle
-//         int x_rotated = 75 + x * cos(angle_rad) - y * sin(angle_rad);
-//         int y_rotated = 200 + x * sin(angle_rad) + y * cos(angle_rad);
-
-//         Brain.Screen.drawPixel(x_rotated, y_rotated);
-// }
-// }
-
-// Define screen resolution (example for VEX Brain 480x240)
-const int SCREEN_WIDTH = 480;
-const int SCREEN_HEIGHT = 240;

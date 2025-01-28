@@ -16,28 +16,12 @@ OBJ = $(addprefix $(BUILD)/, $(addsuffix .o, $(basename $(SRC_C))) )
 
 # location of include files that c and cpp files depend on
 SRC_H  = $(wildcard include/*.h)
-LV_SRC_H += $(wildcard lvgl/src/*.h) 
-LV_SRC_H += $(wildcard lvgl/src/*/*.h)
-LV_DST_H = $(addprefix $(BUILD)/include/, $(LV_SRC_H) )
 
 # additional dependancies
 SRC_A  = makefile
 
 # project header file locations
-
-
-# # build targets
-# all: $(BUILD)/$(PROJECT).bin
-
-# # include build rules
-# include vex/mkrules.mk
-
-$(BUILD)/include/%: %
-	$(Q)$(MKDIR)
-	$(Q) $(call copyfile,$^, $@)
-
-
-# override default library name
+INC_F  = include
 
 # build targets
 all: $(BUILD)/$(PROJECT).bin
