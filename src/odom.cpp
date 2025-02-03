@@ -19,6 +19,8 @@ double Odometry::degToInch(double degrees) {
     return degrees * distancePerDegree;
 }
 
+double Odometry::inchToTile(double inch){return inch/24.0;}
+
 void Odometry::resetSensors() {
     xEncoder.setRotation(0, deg);
     yEncoder.setRotation(0, deg);
@@ -41,8 +43,8 @@ void Odometry::updatePos() {
     double deltaYRotation = currentYRotation - prevYRotation;
     if (deltaYRotation > 180.0) deltaYRotation -= 360.0;
 
-    double localX = degToInch(deltaXRotation);
-    double localY = degToInch(deltaYRotation);
+    double localX = inchToTile(degToInch(deltaXRotation));
+    double localY = inchToTile(degToInch(deltaYRotation));
 
     double botAngle = bob.rotation(deg) * (M_PI / 180.0);
 

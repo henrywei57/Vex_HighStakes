@@ -13,6 +13,8 @@ private:
     // Helper function to convert degrees to inches based on wheel diameter
     double degToInch(double degrees);
 
+    double inchToTile(double inch);
+
 public:
     // Constructor to initialize the odometry system with the wheel diameter
     Odometry(double diameter);
