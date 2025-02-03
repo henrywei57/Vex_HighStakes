@@ -41,6 +41,16 @@ void runUpdatePos(){
   while(true){  odom.updatePos();}
 }
 
+void updateButtonPos() {
+  while(true){
+    button1.updateTouchingPos();
+    button2.updateTouchingPos();
+    button3.updateTouchingPos();
+    button4.updateTouchingPos();
+    wait(10,msec);
+  }
+}
+
 void pre_auton(void) {
   bob.startCalibration();
   while(bob.isCalibrating()){
@@ -57,6 +67,8 @@ void pre_auton(void) {
   button2.draw();
   button3.draw();
   button4.draw();
+
+  vex::thread updatePosForButton(updateButtonPos);
 
   while(true){
     if(button1.isPressed()){

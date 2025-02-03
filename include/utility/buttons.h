@@ -9,6 +9,7 @@ private:
     int x, y, width, height; // Button position and size
     const char* label;       // Button label
     bool pressed;            // Button pressed state
+    int touchX, touchY;
 
 public:
     // Constructor
@@ -16,6 +17,8 @@ public:
 
     // Draw the button on the screen
     void draw();
+
+    void updateTouchingPos();
 
     // Check if the button is pressed
     bool isPressed();

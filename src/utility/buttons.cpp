@@ -24,19 +24,17 @@ void TouchButton::draw() {
     Brain.Screen.printAt(x + 10, y + height / 2 + 5, label); // Display label
 }
 
+void TouchButton::updateTouchingPos(){
+    touchX = Brain.Screen.xPosition();
+    touchY = Brain.Screen.yPosition();
+}
+
+
 // Check if the button is pressed
 bool TouchButton::isPressed() {
-    if (Brain.Screen.pressing()) {
-        int touchX = Brain.Screen.xPosition();
-        int touchY = Brain.Screen.yPosition();
-
-        // Check if touch is within the button's bounds
-        if (touchX >= x && touchX <= x + width && touchY >= y && touchY <= y + height) {
-            pressed = true;
-            return true;
-        }
-    } else {
-        pressed = false;
+    if (touchX >= x && touchX <= x + width && touchY >= y && touchY <= y + height) {
+        pressed = true;
+        return true;
     }
     return false;
 }

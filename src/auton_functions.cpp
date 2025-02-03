@@ -40,7 +40,7 @@ namespace auton {
             double finalRightVelocity = newLinearVelocity - newTurnVelocity;
             driveVelocity(finalLeftVelocity,finalRightVelocity);
             con.Screen.print(error);
-            task::sleep(20);
+            task::sleep(5);
             con.Screen.clearScreen();
         }
         leftmo.stop();
@@ -59,7 +59,7 @@ namespace auton {
             double newTurnVelocity = rotateToPID.getValue(); 
             driveVelocity(newTurnVelocity, -newTurnVelocity); 
             printf("error%3f\n",error); 
-            task::sleep(20); 
+            task::sleep(5); 
 
         }
         leftmo.stop();
@@ -67,20 +67,7 @@ namespace auton {
     }
 
     void swing(double angle, double MaxVelocity, double timeoutMs){
-        PIDControl rotateToPID(turnSped, 0, 0, 3);
-        
-        timer timeout;
-        while(timeout.time(msec) <= timeoutMs && !rotateToPID.reachedGoal()){
-            double error = angle - bob.rotation(degrees);
-            rotateToPID.computeFromError(error);
-            double newTurnVelocity = rotateToPID.getValue(); 
-            driveVelocity(newTurnVelocity, -newTurnVelocity); 
-            printf("error%3f\n",error); 
-            task::sleep(20); 
 
-        }
-        leftmo.stop();
-        rightmo.stop();
     }
 
     void driveVelocity(double leftPct, double rightPct){
