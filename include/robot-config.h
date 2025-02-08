@@ -31,6 +31,7 @@ extern motor arm;
 extern optical colorseancor;
 extern encoder xEncoder;
 extern encoder yEncoder;
+extern rotation lb;
 
 
 /**

@@ -5,3 +5,7 @@
 
    float to_volt(float percent);
    float deadband(float input, float width);
+
+   void nextState();
+
+   void initializeArm();

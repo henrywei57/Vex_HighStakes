@@ -30,7 +30,11 @@ motor inta2 = motor(PORT21, ratio18_1, 1);
 motor_group intas = motor_group(inta1,inta2);
 //intake
 
-motor arm = motor(PORT20, ratio36_1, 0);  
+//arm motor & sensor
+motor arm = motor(PORT17, ratio36_1, 1);  
+rotation lb = rotation(PORT18);
+
+
 
 digital_out clamp = digital_out(Brain.ThreeWirePort.A);
 digital_out armbig = digital_out(Brain.ThreeWirePort.B);

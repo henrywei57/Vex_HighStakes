@@ -10,8 +10,8 @@
 #include "other_function.h"
 #include <vector>
 #include <iostream>
-#include "colorFilter.h"
 #include "odometry/odom.h"
+#include "botcontrol.h"
 
 
 using namespace vex;
@@ -106,12 +106,13 @@ void autonomous(void) {
 }
 
 void usercontrol(void) {
+  initializeArm();
   Brain.Screen.clearScreen();
   autonSelector = false;
 
   con.ButtonRight.pressed(asdr);
   con.ButtonL1.pressed(mogo_clamp);
-  
+  con.ButtonRight.pressed(nextState);
   con.ButtonY.pressed(intake);
 
   driver(); 

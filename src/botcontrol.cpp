@@ -7,6 +7,7 @@
 #include "autons/auton_functions.h"
 #include <iostream>
 #include "vex.h"  
+#include "utility/pid_control.h"
 
 using namespace vex;
 using namespace auton;
@@ -16,7 +17,7 @@ bool isThreadRunning = false;
 bool isThreadRunning1 = false;
 
 
-#define BOTH_BUTTONS_PRESSED (con.ButtonDown.pressing())
+// #define BOTH_BUTTONS_PRESSED (con.ButtonDown.pressing())
 
 
 #define SET_THREAD_RUNNING(state) isThreadRunning = state
@@ -106,43 +107,115 @@ void arcadeDrive(){
 }
 
 
-void driver() {
-    int county = 0;
-    if(autonoption == 3||autonoption == 4){
-        vex::thread asdddasdefeww(redffffilter);  
-    }else{
-        vex::thread asdsdasdas(blueffffilter);  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////Scoring Arm//////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+int currState = 0;
+
+int states[3] = {-0,-25,-160};
+
+int target = states[currState];
+
+
+double error;
+
+void spinToPlace(){
+    double kp = 0.8;
+    error = target - lb.position(deg);
+    if (abs(error) < 10) {
+        arm.stop(hold);
+        return;
     }
+    double velo = kp*error;
+    arm.spin(fwd, -velo, pct);
+}
+
+
+void nextState(){
+    currState += 1;
+    if(currState == 3){
+        currState = 0;
+    }
+    target = states[currState];
+}
+
+void initializeArm(){
+    vex::thread armMoveThread([]{
+        while(true){
+            spinToPlace();
+            wait(10,msec);
+        }
+    });
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////MAIN FUNCTION///////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+void driver() {
+    lb.resetPosition();
+    int county = 0;
+    // if(autonoption == 3||autonoption == 4){
+    //     vex::thread asdddasdefeww(redffffilter);  
+    // }else{
+    //     vex::thread asdsdasdas(blueffffilter);  
+    // }
     
 
     while (1) { 
+
+
+
+
+
         int detectedColor = colorseancor.hue();
 
         
-        if (!isThreadRunning && hehe) {
-            if (BOTH_BUTTONS_PRESSED && aaasssddd.objectDistance(inches) < 1.3) {
-                vex::thread reveThread(reve);  
-            } else if (BOTH_BUTTONS_PRESSED) {
-                intas.spin(fwd, 100, pct);
-            } else if (con.ButtonR1.pressing() && !isThreadRunning) {
+        // if (!isThreadRunning && hehe) {
+        //     if (BOTH_BUTTONS_PRESSED && aaasssddd.objectDistance(inches) < 1.3) {
+        //         vex::thread reveThread(reve);  
+        //     } else if (BOTH_BUTTONS_PRESSED) {
+        //         intas.spin(fwd, 100, pct);
+        //     } else if (con.ButtonR1.pressing() && !isThreadRunning) {
+        //         intas.spin(fwd, 100, pct);
+        //     } else if (con.ButtonR2.pressing() && !isThreadRunning) {
+        //         intas.spin(reverse, 100, pct);
+        //     } else if (!isThreadRunning) {
+        //         intas.stop(coast);
+        //     }
+        // }
+            if (con.ButtonR1.pressing() && !isThreadRunning) {
                 intas.spin(fwd, 100, pct);
             } else if (con.ButtonR2.pressing() && !isThreadRunning) {
                 intas.spin(reverse, 100, pct);
             } else if (!isThreadRunning) {
                 intas.stop(coast);
             }
-        }
+
 
         
-        if (con.ButtonRight.pressing()) {
-            arm.spin(fwd, 35, pct);
-        } else if (con.ButtonY.pressing()) {
-            arm.spin(reverse, 35, pct);
-        } else {
-            arm.stop(hold);
-        }
+        // if (con.ButtonUp.pressing()) {
+        //     arm.spin(fwd, 75, pct);
+        // } else if (con.ButtonDown.pressing()) {
+        //     arm.spin(reverse, 75, pct);
+        // } else {
+        //     arm.stop(hold);
+        // }
 
         
+        Brain.Screen.clearScreen();
+        Brain.Screen.setCursor(1, 1);
+        Brain.Screen.print("Rotational: %.2f deg", lb.position(degrees));
+        Brain.Screen.printAt(100,100,"Motor: %.2f deg", arm.position(deg));
+        Brain.Screen.printAt(200,200,"%.2f",error);
+
+
         arcadeDrive();
 
         wait(10, msec);
