@@ -27,11 +27,7 @@ public:
     // Function to update the robot's global position
     void updatePos();
 
-    void moveToPos(double X_position, double Y_position, double angle, 
-                          double drive_min_voltage, double drive_max_voltage, double heading_max_voltage, 
-                          double drive_settle_error, int drive_settle_time, double drive_timeout, 
-                          double drive_kp, double drive_ki, double drive_kd, 
-                          double heading_kp, double heading_ki, double heading_kd);
+    void moveToPos();
 
     // Getter functions for global position
     double getGlobalX() const { return globalX; }

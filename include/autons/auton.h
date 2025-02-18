@@ -10,3 +10,5 @@ void redle();
 void soloawpr();
 void soloawpb();
 void skill();
+void initializeArmAuto();
+void driverSkillStart();

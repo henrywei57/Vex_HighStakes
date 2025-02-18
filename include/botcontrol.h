@@ -9,3 +9,7 @@
    void nextState();
 
    void initializeArm();
+   
+   void idlePos();
+
+   void nextRing();

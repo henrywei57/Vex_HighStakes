@@ -3,8 +3,8 @@
 class PIDControl {
     public:
         PIDControl();
-        PIDControl(double kp, double ki = 0, double kd = 0, double MOE = 5, int minReachedCall = 10);
-        void computeFromError(double error);
+        PIDControl(double kp, double ki = 0, double kd = 0, double MOE = 5, int minReachedCall = 10, double starti = 10, int timeout = 5000);
+        void computeFromError(double error, int deltaTime);
         double getValue();
         bool reachedGoal();
     private:
@@ -13,5 +13,8 @@ class PIDControl {
         double prevError;
         double marginOfError;
         int minReachedCall, reachedCallCount;
+        double starti;
+        int timeout;
+        int timeSinceStart, timeSettled;
         double lowPassFilter(double current, double previous, double alpha);
 };

@@ -22,6 +22,7 @@ void calibob(){
     bob.startCalibration();
     while(bob.isCalibrating()){
     wait(100, msec);
+    printf("calibrating"); 
   }
 }
 
